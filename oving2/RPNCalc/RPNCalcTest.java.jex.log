@@ -1,0 +1,12 @@
+<eResourceEntry  timestamp='1390257471862' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' key='resource selected' value='null'/>
+<eObjectEntry  timestamp='1390257480153' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.0' key='test run status' value='false'/>
+<eObjectEntry  timestamp='1390257480161' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.1' key='test run status' value='true'/>
+<eObjectEntry  timestamp='1390257480168' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.2' key='test run status' value='true'/>
+<eObjectEntry  timestamp='1390257480175' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.3' key='test run status' value='false'/>
+<eObjectEntry  timestamp='1390257480183' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.4' key='test run status' value='true'/>
+<eObjectEntry  timestamp='1390257480190' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.5' key='test run status' value='false'/>
+<eObjectEntry  timestamp='1390257480197' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.6' key='test run status' value='false'/>
+<eObjectEntry  timestamp='1390257511869' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.0' key='junit test launch' value='testPushPopPeek'/>
+<eObjectEntry  timestamp='1390257512847' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.0' key='test run status' value='false'/>
+<eObjectEntry  timestamp='1390257522622' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.5' key='junit test launch' value='testPerformOperationDivision'/>
+<eObjectEntry  timestamp='1390257523664' resUri='platform:/resource/obligatoriskOving/src/oving2/RPNCalc/RPNCalcTest.java.jex' fragmentId='//@requirements.0/@requirements.5' key='test run status' value='false'/>

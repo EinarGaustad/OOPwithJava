@@ -1,0 +1,9 @@
+<eResourceEntry  timestamp='1389724485063' resUri='platform:/resource/obligatoriskOving/src/oving1/AccountTest.java.jex' key='resource selected' value='null'/>
+<eObjectEntry  timestamp='1389724486363' resUri='platform:/resource/obligatoriskOving/src/oving1/AccountTest.java.jex' fragmentId='//@requirements.0/@requirements.0' key='junit test launch' value='testDeposit'/>
+<eObjectEntry  timestamp='1389724487470' resUri='platform:/resource/obligatoriskOving/src/oving1/AccountTest.java.jex' fragmentId='//@requirements.0/@requirements.0' key='test run status' value='true'/>
+<eObjectEntry  timestamp='1389724489723' resUri='platform:/resource/obligatoriskOving/src/oving1/AccountTest.java.jex' fragmentId='//@requirements.0/@requirements.1' key='junit test launch' value='testDepositNegativeAmount'/>
+<eObjectEntry  timestamp='1389724490578' resUri='platform:/resource/obligatoriskOving/src/oving1/AccountTest.java.jex' fragmentId='//@requirements.0/@requirements.1' key='test run status' value='true'/>
+<eObjectEntry  timestamp='1389724495036' resUri='platform:/resource/obligatoriskOving/src/oving1/AccountTest.java.jex' fragmentId='//@requirements.0/@requirements.2' key='junit test launch' value='testAddInterest'/>
+<eObjectEntry  timestamp='1389724495855' resUri='platform:/resource/obligatoriskOving/src/oving1/AccountTest.java.jex' fragmentId='//@requirements.0/@requirements.2' key='test run status' value='true'/>
+<eObjectEntry  timestamp='1389724505842' resUri='platform:/resource/obligatoriskOving/src/oving1/AccountTest.java.jex' fragmentId='//@requirements.0/@requirements.1' key='junit test launch' value='testDepositNegativeAmount'/>
+<eObjectEntry  timestamp='1389724506625' resUri='platform:/resource/obligatoriskOving/src/oving1/AccountTest.java.jex' fragmentId='//@requirements.0/@requirements.1' key='test run status' value='true'/>
