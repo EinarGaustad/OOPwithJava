@@ -1,4 +1,3 @@
-http://rogerdudler.github.io/git-guide/
 
 add & commit
 You can propose changes (add it to the Index) using
@@ -56,27 +55,5 @@ If you instead want to drop all your local changes and commits, fetch the latest
 git fetch origin
 git reset --hard origin/master
 
-useful hints
-built-in git GUI
-gitk
-use colorful git output
-git config color.ui true
-show log on just one line per commit
-git config format.pretty oneline
-use interactive adding
-git add -i
 
-links & resources
-graphical clients
-GitX (L) (OSX, open source)
-Tower (OSX)
-Source Tree (OSX, free)
-GitHub for Mac (OSX, free)
-GitBox (OSX, App Store)
-guides
-Git Community Book
-Pro Git
-Think like a git
-GitHub Help
-A Visual Git Guide
-comments
+source: http://rogerdudler.github.io/git-guide/
