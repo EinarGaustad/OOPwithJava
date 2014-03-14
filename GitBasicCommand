@@ -1,3 +1,13 @@
+    clone repository folder to current local folder/repositoryname:
+            git clone https://github.com/usename/repositoryname.git
+*to update newest local files to your repository: 
+        git commit -a -m "comments"
+        git push      //Update remote refs along with associated objects.
+        
+        
+ ------------       ------------
+
+
 Create a new repository on the command line
 
 touch README.md
@@ -14,7 +24,9 @@ Push an existing repository from the command line
 git remote add origin https://github.com/username/repositoryname.git
 git push -u origin master
 
--------------------
+-------------
+
+
 
 add & commit
 You can propose changes (add it to the Index) using
