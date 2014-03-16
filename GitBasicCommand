@@ -1,9 +1,10 @@
     clone repository folder to current local folder/repositoryname:
             git clone https://github.com/usename/repositoryname.git
 *to update newest local files to your repository: 
-        git commit -a -m "comments"
+        git commit -a -m "comments"  //-m <msg>, --message=<msg>; -a -all, Tell the command to automatically stage files that have been modified and deleted, but new files you have not told git about are not affected.
         git push      //Update remote refs along with associated objects.
         
+                        //git-commit - Record changes to the repository: man git-commit
         
  ------------       ------------
 
