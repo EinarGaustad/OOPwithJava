@@ -1,0 +1,18 @@
+Del 1 – Innkapsling og validering: teori
+
+Ta utgangspunkt i (koden for) den originale klassen og besvar følgende spørsmål:
+
+	1	Hvordan skal private og public brukes for at denne klassen skal være korrekt innkapslet?
+	private brukes i variabler, så programmer eller metod uten for kunne ikke ender verdi
+			private variabler;
+			public variabler = variabler;
+	for metode inne i klasse begynne med public kan denne metod brukes utenfor,
+									private metod navn ...	kan bare brukes inne i klasse;
+	
+	2	Hva slags validering bør legges til for å sikre gyldig tilstand?
+		
+	3	Hvilke metoder må evt. legges til?
+	
+	4	Vil du karakterisere denne klassen som data-orientert eller tjeneste-orientert. Begrunn svaret!
+	
+	

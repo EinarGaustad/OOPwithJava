@@ -1,0 +1,9 @@
+<eResourceEntry  timestamp='1390903191321' resUri='platform:/resource/obligatoriskOving/src/oving3/encapsulation/DigitTest.java.jex' key='resource selected' value='null'/>
+<eObjectEntry  timestamp='1390903192935' resUri='platform:/resource/obligatoriskOving/src/oving3/encapsulation/DigitTest.java.jex' fragmentId='//@requirements.0/@requirements.2' key='junit test launch' value='testToString'/>
+<eObjectEntry  timestamp='1390903193863' resUri='platform:/resource/obligatoriskOving/src/oving3/encapsulation/DigitTest.java.jex' fragmentId='//@requirements.0/@requirements.2' key='test run status' value='true'/>
+<eObjectEntry  timestamp='1390903195269' resUri='platform:/resource/obligatoriskOving/src/oving3/encapsulation/DigitTest.java.jex' fragmentId='//@requirements.0/@requirements.1' key='junit test launch' value='testIncrement'/>
+<eObjectEntry  timestamp='1390903196268' resUri='platform:/resource/obligatoriskOving/src/oving3/encapsulation/DigitTest.java.jex' fragmentId='//@requirements.0/@requirements.1' key='test run status' value='true'/>
+<eObjectEntry  timestamp='1390903197525' resUri='platform:/resource/obligatoriskOving/src/oving3/encapsulation/DigitTest.java.jex' fragmentId='//@requirements.0/@requirements.0' key='junit test launch' value='testDigit'/>
+<eObjectEntry  timestamp='1390903198483' resUri='platform:/resource/obligatoriskOving/src/oving3/encapsulation/DigitTest.java.jex' fragmentId='//@requirements.0/@requirements.0' key='test run status' value='false'/>
+<eObjectEntry  timestamp='1390903402243' resUri='platform:/resource/obligatoriskOving/src/oving3/encapsulation/DigitTest.java.jex' fragmentId='//@requirements.0/@requirements.0' key='junit test launch' value='testDigit'/>
+<eObjectEntry  timestamp='1390903403188' resUri='platform:/resource/obligatoriskOving/src/oving3/encapsulation/DigitTest.java.jex' fragmentId='//@requirements.0/@requirements.0' key='test run status' value='false'/>
