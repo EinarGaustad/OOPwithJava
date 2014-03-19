@@ -31,8 +31,8 @@ package oving1;
  */
 public class Digit {
 	
-	int	tallsystemet;
-	int	verdi	= 0;
+	private int	tallsystemet;
+	private int	verdi	= 0;
 	
 	public Digit(int tallsystemet) {
 		this.tallsystemet = tallsystemet;
