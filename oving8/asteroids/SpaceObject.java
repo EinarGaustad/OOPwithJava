@@ -50,19 +50,20 @@ package oving8.asteroids;
  */
 public class SpaceObject extends BaseSpaceObject {
 	
-	protected double[]	farten		= new double[2];
+	// protected double[] farten = new double[2];
+	protected Point2D	point		= new Point2D();
 	protected double[]	acclerate	= new double[2];
 	protected double[]	force		= new double[2];
 	protected double	mass		= 0;
 	
 	public Point2D getSpeed() {
 		// ikke ferdig
+		
 		return null;// farten;
 	}
 	
 	public void setSpeed(double vx, double vy) {
-		farten[0] = vx;
-		farten[1] = vy;
+		point.setSpeed(vx, vy);
 	}
 	
 	public void accelerate(double ax, double ay) {
@@ -113,9 +114,9 @@ public class SpaceObject extends BaseSpaceObject {
 	 *         teknikkene!
 	 */
 	public boolean intersects(SpaceObject other) {
-//		if (){//ikke ferdig
-//			return true;
-//		}
+		// if (){//ikke ferdig
+		// return true;
+		// }
 		return false;
 	}
 	
