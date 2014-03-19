@@ -13,4 +13,16 @@ package oving8.asteroids;
 
 public class Asteroid extends SpaceObject {
 	
+	protected double	density;
+	protected double	radius;
+	
+	public Asteroid(double density, double radius) {
+		this.density = density;
+		this.radius = radius;
+	}
+	
+	public double getMass() {
+		// p = m/v
+		return (density * (4 / 3) * Math.PI * radius * radius * radius);
+	}
 }

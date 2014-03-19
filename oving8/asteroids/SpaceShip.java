@@ -18,4 +18,34 @@ package oving8.asteroids;
 
 public class SpaceShip extends SpaceObject {
 	
+	protected double	vinkelfarta;
+	
+	public SpaceShip() {
+		vinkelfarta = 0;
+	}
+	
+	public double getMass() {
+		// massen er alltid 1;
+		return 1;
+	}
+	
+	/***
+	 * 
+	 * @param thrust
+	 *            sidewaysThrust(double thrust) - endrer vinkelfarta
+	 *            tilsvarende. Positiv verdi gir fart mot urvisere. (Hint: bruk
+	 *            get/setRotate-metodene i Polygon).
+	 */
+	public void sidewaysThrust(double thrust) {
+		// ikke ferdig
+	}
+	
+	/***
+	 * 
+	 * @param thrust
+	 *            øker farta tilsvarende i retningen romskipet peker.
+	 */
+	public void forwardThrust(double thrust) {
+		//IKKE ferdig 
+	}
 }

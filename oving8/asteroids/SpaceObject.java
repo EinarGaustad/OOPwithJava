@@ -50,4 +50,81 @@ package oving8.asteroids;
  */
 public class SpaceObject extends BaseSpaceObject {
 	
+	protected double[]	farten		= new double[2];
+	protected double[]	acclerate	= new double[2];
+	protected double[]	force		= new double[2];
+	protected double	mass		= 0;
+	
+	public Point2D getSpeed() {
+		// ikke ferdig
+		return null;// farten;
+	}
+	
+	public void setSpeed(double vx, double vy) {
+		farten[0] = vx;
+		farten[1] = vy;
+	}
+	
+	public void accelerate(double ax, double ay) {
+		this.acclerate[0] = ax;
+		this.acclerate[1] = ay;
+	}
+	
+	public double getMass() {
+		return mass;
+	}
+	
+	public void applyForce(double fx, double fy) {
+		if (mass == 0) {
+			throw new IllegalStateException("mass er null!");
+		} else {
+			this.force[0] = fx;
+			this.force[1] = fy;
+		}
+	}
+	
+	/**
+	 * 
+	 * @param other
+	 * @return returnerer true dersom den andre SpaceObject-instansen overlapper
+	 *         (kolliderer) med denne instansen, ellers false.
+	 * 
+	 *         intersects-metoden skal returnere true dersom to
+	 *         SpaceObject-instanser (this og argumentet) overlapper. Sjekk for
+	 *         overlapp kan gjøres på mange måter, f.eks. sjekke overlapp av
+	 *         såkalt "bounding box" (minste omsluttende rektangel) eller om
+	 *         midten og/eller hjørnene i det ene polygonet er inni det andre
+	 *         (og vice versa), eller en kombinasjon av flere av disse.
+	 *         contains-metoden BaseSpaceObject i er nyttig her. Enkle teknikker
+	 *         vil dekke mange relevante tilfeller, men for å ta alle
+	 *         hjørnetilfellene (wink) så må en være litt kløktig og kombinere
+	 *         flere typer teknikker. Figuren til høyre viser fire polygoner som
+	 *         har litt ulik type overlapp og tabellen bortenfor viser hvilke
+	 *         som overlapper (fasit for testkoden).
+	 * 
+	 *         De blå, grønne og røde polygonene overlapper, og her vil en
+	 *         "bounding box"-test fungere. Men en slik test vil også gi
+	 *         overlapp med den gule, og det stemmer jo ikke. En test for om
+	 *         hjørnene til den ene er inni den andre (og vice versa), vil
+	 *         fungere for de fleste, men ikke for den røde og grønne. En test
+	 *         for om midt-punktet til den ene er inni den andre (og vice
+	 *         versa), vil fungere for de fleste, men ikke for den grønne og
+	 *         gule. Det som altså fungerer best er en kombinasjon av alle disse
+	 *         teknikkene!
+	 */
+	public boolean intersects(SpaceObject other) {
+//		if (){//ikke ferdig
+//			return true;
+//		}
+		return false;
+	}
+	
+	/**
+	 * denne metoden kalles for hvert steg i simuleringen og skal justere alle
+	 * dynamiske egenskaper iht. reglene for verdenen, f.eks. posisjon basert på
+	 * farta.
+	 */
+	public void tick() {
+		// ikke ferdig
+	}
 }
