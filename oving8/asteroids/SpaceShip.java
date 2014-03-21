@@ -1,5 +1,7 @@
 package oving8.asteroids;
 
+import javafx.scene.paint.Color;
+
 /***
  * 
  * @author GuoJunjun SpaceShip
@@ -18,10 +20,19 @@ package oving8.asteroids;
 
 public class SpaceShip extends SpaceObject {
 	
-	protected double	angleSpeed;
+	private double	angleSpeed;
 	
+//	public SpaceShip() {
+//		angleSpeed = 0;
+//	}
 	public SpaceShip() {
-		angleSpeed = 0;
+		addPoints(
+			10.0d, 0.0d,
+			-10.0d, 7.0d, 
+			-10.0d, -7.0d
+		);
+		setFill(Color.GREEN);
+		angleSpeed = 0.0;
 	}
 	
 	public double getMass() {
@@ -37,14 +48,17 @@ public class SpaceShip extends SpaceObject {
 	 *            get/setRotate-metodene i Polygon).
 	 */
 	public void sidewaysThrust(double thrust) {
-		double rotate = getRotate();
-		if (rotate == 0) {
-			setRotate(thrust);
-		} else if ((rotate > 0 && thrust > 0) || (rotate < 0 && thrust < 0)) {
-			setRotate(rotate + thrust);
-		} else if ((rotate > 0 && thrust < 0) || (rotate < 0 && thrust > 0)) {
-			setRotate(thrust);
-		}
+		this.angleSpeed += thrust;
+		// double rotate = getRotate();
+		// if (rotate == 0) {
+		// setRotate(thrust);
+		// } else if ((rotate > 0 && thrust > 0) || (rotate < 0 && thrust < 0))
+		// {
+		// setRotate(rotate + thrust);
+		// } else if ((rotate > 0 && thrust < 0) || (rotate < 0 && thrust > 0))
+		// {
+		// setRotate(thrust);
+		// }
 	}
 	
 	/***
@@ -53,14 +67,22 @@ public class SpaceShip extends SpaceObject {
 	 *            øker farta tilsvarende i retningen romskipet peker.
 	 */
 	public void forwardThrust(double thrust) {
-//		double[] tabel = speed.getSpeed();
-		double vx = speed.getX();//tabel[0];
-		double vy = speed.getY();//tabel[1];
-		double nvx = 0;
-		double nvy = 0;
-		double hypotenuse = Math.sqrt(vx * vx + vy * vy);
-		nvx = (vx / hypotenuse) * (hypotenuse + thrust);
-		nvy = (vy / hypotenuse) * (hypotenuse + thrust);
-		setSpeed(nvx, nvy);
+		double angle = Math.toRadians(getRotate());
+		accelerate(thrust * Math.cos(angle), thrust * Math.sin(angle));
+		// // double[] tabel = speed.getSpeed();
+		// double vx = speed.getX();// tabel[0];
+		// double vy = speed.getY();// tabel[1];
+		// double nvx = 0;
+		// double nvy = 0;
+		// double hypotenuse = Math.sqrt(vx * vx + vy * vy);
+		// nvx = (vx / hypotenuse) * (hypotenuse + thrust);
+		// nvy = (vy / hypotenuse) * (hypotenuse + thrust);
+		// setSpeed(nvx, nvy);
+	}
+	
+	@Override
+	public void tick() {
+		super.tick();
+		setRotate(getRotate() - angleSpeed);
 	}
 }

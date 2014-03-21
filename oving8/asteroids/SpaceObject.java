@@ -1,6 +1,5 @@
 package oving8.asteroids;
 
-import javafx.collections.ObservableList;
 import javafx.geometry.Point2D;
 
 /***
@@ -52,30 +51,45 @@ import javafx.geometry.Point2D;
  *         for verdenen, f.eks. posisjon basert på farta.
  */
 public class SpaceObject extends BaseSpaceObject {
+	protected double speedX,speedY;
+	//protected Point2D	speed;			// = new Point2D(0, 0);
 	
-	protected Point2D	speed;	// = new Point2D(0, 0);
-								
+	// protected Point2D acclerate; // = new Point2D(0, 0);
+	
+	//protected double	mass	= 0;
+	// protected Point2D force; // = new Point2D(0,0);
+	
+	//protected double	length	= 0, width = 0, height = 0;
+	
 	public Point2D getSpeed() {
-		return this.speed;
+		return new Point2D(speedX, speedY);
 	}
 	
 	public void setSpeed(double vx, double vy) {
-		this.speed = new Point2D(vx, vy);
+		this.speedX = vx;// = new Point2D(vx, vy);
+		this.speedY = vy;
 	}
 	
 	public void accelerate(double ax, double ay) {
-		this.acclerate = new Point2D(ax, ay);
+		speedX+=ax;
+		speedY+=ay;
+		// this.acclerate = new Point2D(ax, ay);
+		//setSpeed(ax + getSpeed().getX(), ay + getSpeed().getY());
 	}
 	
+	// @Override
 	public double getMass() {
-		return mass;
+		return 0;// mass;
 	}
 	
 	public void applyForce(double fx, double fy) {
-		if (mass == 0) {
+		if (getMass() == 0) {
 			throw new IllegalStateException("mass er null!");
 		} else {
-			this.force=new Point2D(fx, fy);
+			accelerate(fx / getMass(), fy / getMass());
+			// this.force = new Point2D(fx, fy);
+			// F=am
+			// accelerate(force.getX() / getMass(), force.getY() / getMass());
 		}
 	}
 	
@@ -98,21 +112,18 @@ public class SpaceObject extends BaseSpaceObject {
 	 *         har litt ulik type overlapp og tabellen bortenfor viser hvilke
 	 *         som overlapper (fasit for testkoden).
 	 * 
-	 *         De blå, grønne og røde polygonene overlapper, og her vil en
-	 *         "bounding box"-test fungere. Men en slik test vil også gi
-	 *         overlapp med den gule, og det stemmer jo ikke. En test for om
-	 *         hjørnene til den ene er inni den andre (og vice versa), vil
-	 *         fungere for de fleste, men ikke for den røde og grønne. En test
-	 *         for om midt-punktet til den ene er inni den andre (og vice
-	 *         versa), vil fungere for de fleste, men ikke for den grønne og
-	 *         gule. Det som altså fungerer best er en kombinasjon av alle disse
-	 *         teknikkene!
 	 */
 	public boolean intersects(SpaceObject other) {
-		// if (){//ikke ferdig
-		// return true;
-		// }
-		return false;
+		return this.intersects1(other) || other.intersects1(this);
+	}
+	
+	private boolean intersects1(SpaceObject other) {
+		for (int i = 0; i < other.getPointCount(); i++) {
+			if (contains(other, i)) {
+				return true;
+			}
+		}
+		return contains(parentToLocal(other.getCenter(true)));
 	}
 	
 	/**
@@ -121,11 +132,6 @@ public class SpaceObject extends BaseSpaceObject {
 	 * farta.
 	 */
 	public void tick() {
-		// ikke ferdig
-	}
-
-	public ObservableList<Double> getPoints() {
-		// TODO Auto-generated method stub
-		return null;
+		translate(speedX,speedY);//(speed.getX(), speed.getY());
 	}
 }
