@@ -1,5 +1,8 @@
 package oving8.asteroids;
 
+import javafx.collections.ObservableList;
+import javafx.geometry.Point2D;
+
 /***
  * 
  * @author GuoJunjun Det er i hovedsak to typer rom-objekter, de som svever
@@ -50,25 +53,18 @@ package oving8.asteroids;
  */
 public class SpaceObject extends BaseSpaceObject {
 	
-	// protected double[] farten = new double[2];
-	protected Point2D	point		= new Point2D();
-	protected double[]	acclerate	= new double[2];
-	protected double[]	force		= new double[2];
-	protected double	mass		= 0;
-	
+	protected Point2D	speed;	// = new Point2D(0, 0);
+								
 	public Point2D getSpeed() {
-		// ikke ferdig
-		
-		return null;// farten;
+		return this.speed;
 	}
 	
 	public void setSpeed(double vx, double vy) {
-		point.setSpeed(vx, vy);
+		this.speed = new Point2D(vx, vy);
 	}
 	
 	public void accelerate(double ax, double ay) {
-		this.acclerate[0] = ax;
-		this.acclerate[1] = ay;
+		this.acclerate = new Point2D(ax, ay);
 	}
 	
 	public double getMass() {
@@ -79,8 +75,7 @@ public class SpaceObject extends BaseSpaceObject {
 		if (mass == 0) {
 			throw new IllegalStateException("mass er null!");
 		} else {
-			this.force[0] = fx;
-			this.force[1] = fy;
+			this.force=new Point2D(fx, fy);
 		}
 	}
 	
@@ -127,5 +122,10 @@ public class SpaceObject extends BaseSpaceObject {
 	 */
 	public void tick() {
 		// ikke ferdig
+	}
+
+	public ObservableList<Double> getPoints() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,4 +1,6 @@
 package oving8.asteroids;
+import javafx.geometry.Point2D;
+
 
 /***
  * 
@@ -21,4 +23,26 @@ package oving8.asteroids;
  */
 public class Polygon {
 	
+	//private static final double	double	ax	= 0;
+	protected Point2D	acclerate;//	= new Point2D(0, 0);
+	protected Point2D	force;//		= new Point2D(0,0);
+	
+	protected Point2D	position;//	= new Point2D(0,0);
+	
+	protected double	mass		= 0;
+	protected double	rotate		= 0;
+	
+	public void setRotate(double rotate) {
+		this.rotate = rotate;
+	}
+	
+	public double getRotate() {
+		return rotate;
+	}
+	public void setPosition(double x, double y){
+		this.position = new Point2D(x,y);
+	}
+	public Point2D getPosition(){
+		return this.position;
+	}
 }
