@@ -9,5 +9,35 @@ package oving9.abstractAccount;
  *         settes i konstruktøren SavingsAccount(int, double).
  */
 public class SavingsAccount extends AbstractAccount {
-	
+    
+    private int    withdrawals;
+    private double fee;
+    
+    SavingsAccount(int withdrawals, double fee) {
+        this.withdrawals = withdrawals;
+        this.fee = fee;
+    }
+    
+    @Override
+    void internalWithdraw(double belop) {
+        if (belop >= this.belop) {
+            throw new IllegalStateException("Not enought amount to withdraw");
+        } else if (belop <= 0) {
+            throw new IllegalArgumentException(
+                    "Can only withdraw positive amount");
+        } else {
+            if (withdrawals < 1) {
+                if (belop + fee >= this.belop) {
+                    throw new IllegalStateException(
+                            "Not enought amount to withdraw");
+                } else {
+                    this.belop -= (belop + fee);
+                    withdrawals--;
+                }
+            } else {
+                this.belop -= belop;
+                withdrawals--;
+            }
+        }
+    }
 }
