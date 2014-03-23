@@ -19,8 +19,5 @@ public class DebitAccount extends AbstractAccount {
 		} else {
 			this.belop -= belop;
 		}
-	}
-	
-
-	
+    }
 }
