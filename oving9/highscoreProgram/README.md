@@ -1,25 +1,3 @@
-Skip to content
-Skip to breadcrumbs
-Skip to header menu
-Skip to action menu
-Skip to quick search
-Quick Search
-Browse
-Junjun Guo
-0
-Dashboard
- 
-Objektorientert programmering med Java
- 
-…
- 
-Observatør-observert-teknikken - HighscoreList-oppgave
-Share
-Add
-Tools
- Observatør-observert-teknikken - HighscoreList-oppgave
-Skip to end of metadata
-Added by Håvard Hammer Normann, last edited by Hallvard Trætteberg on 21.03.2014  (view change) Go to start of metadata
 Denne oppgaven handler om å bruke observatør-observert-teknikken for å bli informert om endringer i en highscore-liste. Vi bruker også arv for å skille ut gjenbrukbar kode for en generell, observerbar liste.
 Observatør-observert-teknikken går ut på at det observerte objektet sier ifra til en eller flere observatører om at tilstanden er endret. I denne oppgaven skal vi lage en HighscoreList som kan si fra til lyttere av typen ListListener når nye resultater blir registrert. En hovedprogramklasse kalt HighscoreProgram vil bli brukt til å sjekke at det virker. Denne klassen oppretter en HighscoreList-instans, legger inn resultater (tall) fra konsollet som legges til lista og skriver ut lista hver gang et nytt resultat faktisk blir lagt til.
 
@@ -78,21 +56,3 @@ Implementer en HighscoreList som håndterer resultater for TicTacToe, Sokoban el
 
 
 JExercise lar deg sjekke din egen kode vha. forhåndslagde JUnit-tester og JExercise-panelet. 
-
-Twitre gjerne om oppgaven når du er ferdig: 
- 
-
-Sidetype
-Dekningsgrad
-Omfang
-Ferdig
-oppgave
-75
-75
-95
-LikeBe the first to like this	Labels	
-sidetype-oppgave Edit Labels
-User icon: Add a picture of yourself
-Write a comment…
-
-Powered by Atlassian Confluence 4.3.7, the Enterprise Wiki  ·  Report a bug  ·  Atlassian News
