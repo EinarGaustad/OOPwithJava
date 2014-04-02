@@ -60,7 +60,7 @@ public class CardContainerImpl implements CardContainer {
 	}
 
 	public Card getCard(int n) {
-		if (n > cards.size() || n < 0) {
+        if (n >= cards.size() || n < 0) {
 			throw new AssertionFailedError("feil");
 		}
 		return cards.get(n);

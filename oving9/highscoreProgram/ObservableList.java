@@ -17,18 +17,14 @@ import java.util.List;
 public abstract class ObservableList {
     
     private ArrayList<ListListener> listenerlist = new ArrayList<ListListener>();
-    protected int          maxSize;
-    protected List<Object> elements = new ArrayList<Object>();
+    protected List<Object>          elements     = new ArrayList<Object>();
     
     /**
      * 
      * @return size() - returnerer antall elementer i lista, som altså aldri
      *         skal overstige maks-antallet
      */
-    int size() {
-        // if (list.size() > maxSize) {
-        // return maxSize;
-        // }
+    public int size() {
         return elements.size();
     }
     
@@ -37,12 +33,9 @@ public abstract class ObservableList {
      * @param index
      * @return resultatet i posisjonen angitt av argumentet
      */
-    Object getElement(int index) {
-//        if (index > maxSize || index < 0) {
-//            throw new IllegalArgumentException("Wrong index");
-//        } else {
-            return elements.get(index);
-//        }
+    public Object getElement(int index) {
+        
+        return elements.get(index);
     }
     
     /**
@@ -51,7 +44,7 @@ public abstract class ObservableList {
      * @return hvorvidt subklassen aksepterer at objektet legges inn i lista
      *         (f.eks. aksepterer HighscoreList kun Integer-objekter).
      */
-    abstract boolean acceptsElement(Object object);
+    public abstract boolean acceptsElement(Object object);
     
     /**
      * 
@@ -66,10 +59,11 @@ public abstract class ObservableList {
     protected void addElement(int pos, Object object) {
         if (!acceptsElement(object)) {
             throw new IllegalArgumentException("Only accept Integer");
-        } else if (pos < 0 || pos > maxSize) {
+        } else if (pos < 0 || pos > size()) {
             throw new IndexOutOfBoundsException("index erro");
         } else {
             elements.add(pos, object);
+            tellListener(pos);
         }
     }
     
@@ -81,10 +75,11 @@ public abstract class ObservableList {
      *            IndexOutOfBoundsException utløses.
      */
     protected void removeElement(int pos) {
-        if (pos < 0 || pos > maxSize) {
+        if (pos < 0 || pos + 1 > elements.size()) {
             throw new IndexOutOfBoundsException("index erro");
         } else {
             elements.remove(pos);
+            tellListener(pos);
         }
     }
     
@@ -97,11 +92,8 @@ public abstract class ObservableList {
      *            utløses.
      */
     protected void addElement(Object object) {
-        if (!acceptsElement(object)) {
-            throw new IllegalArgumentException("erro");
-        }else{
-            elements.add(object);
-        }
+        addElement(elements.size(), object);
+
     }
     
     /**
@@ -109,7 +101,7 @@ public abstract class ObservableList {
      * @param lytter
      *            registrerer en ny lytter
      */
-    void addListListener(ListListener lytter) {
+    public void addListListener(ListListener lytter) {
         if (!listenerlist.contains(lytter)) {
             listenerlist.add(lytter);
         }
@@ -120,15 +112,15 @@ public abstract class ObservableList {
      * @param lytter
      *            fjerner en tidligere registrert lytter
      */
-    void removeListListener(ListListener lytter) {
+    public void removeListListener(ListListener lytter) {
         if (listenerlist.contains(lytter)) {
             listenerlist.remove(lytter);
         }
     }
     
-    void tellListener(ObservableList list, int changedPosition) {
+    public void tellListener(int changedPosition) {
         for (ListListener listener : listenerlist) {
-            listener.listChanged(list, changedPosition);
+            listener.listChanged(this, changedPosition);
         }
     }
 }

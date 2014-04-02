@@ -13,10 +13,10 @@ public class ReadAFile {
 	public void run(String navn) {
 		Scanner in;
 		in = new Scanner(System.in);
-		//System.out.println("skrive fil navn:");
+        // System.out.println("skrive fil navn:");
 
 		String filnavn = "/Users/junjun/Dropbox/ntnu2014/"
-				+ "objectOrientedProgramming/oving/obligatoriskOving/"
+                + "objectOrientedProgramming/oving/DTD4100/"
 				+ "src/oving7/tictactoe/" + navn + ".txt";
 
 		try {

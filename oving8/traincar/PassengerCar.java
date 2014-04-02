@@ -13,7 +13,7 @@ public class PassengerCar extends TrainCar {
 
 	private int	passasjerer;
 
-	PassengerCar(int veier, int passasjerer) {
+    public PassengerCar(int veier, int passasjerer) {
 		super(veier);
 		this.passasjerer = passasjerer;
 	}

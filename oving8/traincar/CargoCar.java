@@ -19,7 +19,7 @@ public class CargoCar extends TrainCar {
 	
 	private int	lastVeier;
 
-	CargoCar(int veier, int lastVeier) {
+    public CargoCar(int veier, int lastVeier) {
 		super(veier);
 		this.lastVeier = lastVeier;
 	}

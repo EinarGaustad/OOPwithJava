@@ -23,7 +23,7 @@ public class WriteAFile {
 		try {
 			String fil = "/Users/junjun/Dropbox/ntnu2014/"
 					+ "objectOrientedProgramming/oving/"
-					+ "obligatoriskOving/src/oving7/tictactoe/" + filnavn
+                    + "DTD4100/src/oving7/tictactoe/" + filnavn
 					+ ".txt";
 			PrintWriter outFil = new PrintWriter(fil);
 			outFil.println(M);

@@ -2,7 +2,6 @@ package oving9.highscoreProgram;
 
 import java.util.Scanner;
 
-
 /**
  * 
  * @author GuoJunjun Lag en hovedprogramklasse kalt HighscoreProgram, som tester
@@ -23,11 +22,12 @@ public class HighscoreProgram implements ListListener {
      * void init() - oppretter en ny HighscoreList og registrerer seg selv
      * (altså HighscoreProgram-instansen) som lytter
      */
-    void init(int max) {
+    public void init(int max) {
         list = new HighscoreList(max);
+        list.addListListener(this);
     }
     
-    void run() {
+    public void run() {
         Scanner sc = new Scanner(System.in);
         System.out.println("List size");
         int nr = sc.nextInt();

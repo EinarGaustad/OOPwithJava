@@ -5,8 +5,8 @@ import java.util.ArrayList;
 public class Stock {
     
     private String                   ticker;
-    private double                   aksjekurs;
-    private ArrayList<StockListener> stocklist = new ArrayList<StockListener>();
+    protected double                 aksjekurs;
+    protected ArrayList<StockListener> stocklist = new ArrayList<StockListener>();
 
     Stock(String ticker, double aksjekurs) {
         this.ticker = ticker;

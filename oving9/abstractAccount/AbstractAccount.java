@@ -38,7 +38,7 @@ public abstract class AbstractAccount {
 	public AbstractAccount() {
 		belop = 0;
 	}
-	void deposit(double belop) {
+	public void deposit(double belop) {
 		if (belop <= 0) {
 			throw new IllegalArgumentException(
 					"deposit amount must be positive");
@@ -53,7 +53,7 @@ public abstract class AbstractAccount {
 	 *            implementeres i hver subklasse. Hvis uttaksbeløpet er negativt
 	 *            skal metoden utløse en IllegalArgumentException.
 	 */
-	void withdraw(double belop) {
+	public void withdraw(double belop) {
 		internalWithdraw(belop);
 		// if (belop > this.belop) {
 		// throw new IllegalArgumentException("Not enought amount to withdraw");
@@ -71,7 +71,7 @@ public abstract class AbstractAccount {
 	 *            Hvis det ikke er mulig å ta ut det angitte beløpet skal
 	 *            metoden utløse en IllegalStateException.
 	 */
-	abstract void internalWithdraw(double belop);
+    abstract void internalWithdraw(double belop);
 	
 	/**
 	 * returnerer kontobalansen

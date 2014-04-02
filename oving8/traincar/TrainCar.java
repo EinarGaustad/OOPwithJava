@@ -18,7 +18,7 @@ package oving8.traincar;
 public class TrainCar {
 	protected int	veier;
 
-	TrainCar(int veier) {
+    public TrainCar(int veier) {
 		this.veier = veier;
 	}
 

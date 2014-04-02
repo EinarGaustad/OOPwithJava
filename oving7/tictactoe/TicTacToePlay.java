@@ -12,7 +12,9 @@ public class TicTacToePlay {
 		String svar = in.next();
 		if (svar.equalsIgnoreCase("l")) {
 			ReadAFile loadgame = new ReadAFile();
-			loadgame.run("filnavn");//
+            System.out.println("skrive fil navn");
+            svar = in.next();//
+            loadgame.run(svar);//
 			if (loadgame.getM() == 3 && loadgame.getNxN()==3){
 				tictactoe = new TicTacTAngre();
 				tictactoe.loadgame(loadgame.getTabel(),loadgame.getM(),loadgame.getNxN(), loadgame.getSumere());

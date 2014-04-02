@@ -27,7 +27,7 @@ public class CardHand extends CardContainerImpl implements CardContainer {
 	}
 
 	public void addCard(Card nyCard) {
-		if (cards.size() >= super.getMaxCardCount()) {
+        if (cards.size() >= super.getMaxCardCount()) {
 			throw new IllegalStateException("max card er "
 					+ super.getMaxCardCount());
 		}

@@ -38,7 +38,7 @@ import java.util.Iterator;
  */
 public class Locomotive {
 
-	private ArrayList<TrainCar>	locomotive	= new ArrayList<TrainCar>();
+    private ArrayList<TrainCar> locomotive = new ArrayList<TrainCar>();
 
 	public void addTrainCar(TrainCar traincar) {
 		locomotive.add(traincar);

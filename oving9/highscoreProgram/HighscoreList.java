@@ -1,6 +1,5 @@
 package oving9.highscoreProgram;
 
-
 /**
  * 
  * @author GuoJunjun Denne oppgaven handler om å bruke
@@ -52,6 +51,7 @@ public class HighscoreList extends ObservableList {
     // protected ArrayList<Integer> list;
     // private ArrayList<>
     // private int changedPosition;
+    protected int maxSize;
 
     /**
      * 
@@ -60,36 +60,11 @@ public class HighscoreList extends ObservableList {
      *            resultater som lista skal kunne holde. Denne verdien må brukes
      *            av addResult, slik at resultater som er for dårlige kastes.
      */
-    HighscoreList(int maxSize) {
+    public HighscoreList(int maxSize) {
         this.maxSize = maxSize;
         // elements = new ArrayList<Integer>();
         // list = new int[maxSize];
     }
-    
-    // /**
-    // *
-    // * @return size() - returnerer antall elementer i lista, som altså aldri
-    // * skal overstige maks-antallet
-    // */
-    // int size() {
-    // if (elements.size() > maxSize) {
-    // return maxSize;
-    // }
-    // return elements.size();
-    // }
-
-    // /**
-    // *
-    // * @param index
-    // * @return resultatet i posisjonen angitt av argumentet
-    // */
-    // int getElement(int index) {
-    // if (index > maxSize || index < 0) {
-    // throw new IllegalArgumentException("Wrong index");
-    // } else {
-    // return list.get(index);
-    // }
-    // }
     
     /**
      * 
@@ -101,59 +76,22 @@ public class HighscoreList extends ObservableList {
      *            beskjed om en evt. endring av lista, inkludert på hvilken
      *            posisjon som ble endret.
      */
-    void addResult(int result) {
-        // if (result < 0) {
-        // throw new IllegalArgumentException("result can not be negativ");
-        // } else {
-            int position = 0;
-            while (position < size() && (int) getElement(position) <= result) {
-                position++;
-            }
-            addElement(position, result);
-            tellListener(this, position);
-        while (elements.size() > maxSize) {
-            elements.remove(maxSize);
-        }
-        // }
-        // ----------
-        // if (size() < maxSize) {
-        // list.add(result);
-        // changedPosition = size();
-        // } else {
-        // int max = -1;
-        // int indexnr = 0;
-        // for (int i = 0; i < maxSize; i++) {
-        // if (list.get(i) > max) {
-        // max = list.get(i);
-        // indexnr = i;
-        // }
-        // }
-        // list.set(indexnr, result);
-        // changedPosition = indexnr;
-        // }
+    public void addResult(int result) {
 
-        // --------
-        
-        // if (size() == 0) {
-        // list.add(result);
-        // } else {
-        // for (int i = 0; i < size(); i++) {
-        // if (list.get(i) > result) {
-        // list.add(i, result);
-        // changedPosition = i;
-        // if (list.size() > maxSize) {
-        // list.remove(maxSize);
-        // }
-        // break;
-        // }
-        // }
-        // }
+        int position = 0;
+        while (position < size() && (int) getElement(position) <= result) {
+            position++;
+        }
+        if (position < maxSize) {
+            addElement(position, result);
+            while (size() > maxSize) {
+                elements.remove(size() - 1);
+            }
+        }
     }
     
-
-
     @Override
-    boolean acceptsElement(Object object) {
+    public boolean acceptsElement(Object object) {
         if (object instanceof Integer) {
             return true;
         }
