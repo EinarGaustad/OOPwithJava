@@ -1,6 +1,5 @@
 package oving10.tictactoe;
 
-
 import java.util.AbstractMap;
 import java.util.Map;
 
@@ -12,18 +11,18 @@ public class ProgramBuilderFactory implements BuilderFactory {
     
     public static class SimpleEntryBuilder<K, V> implements
             Builder<Map.Entry<K, V>> {
-        
+
         private K key;
         private V value;
         
         public K getKey() {
             return key;
         }
-        
+
         public void setKey(K key) {
             this.key = key;
         }
-        
+
         public V getValue() {
             return value;
         }
@@ -39,9 +38,9 @@ public class ProgramBuilderFactory implements BuilderFactory {
             return picker;
         }
     }
-    
+
     private JavaFXBuilderFactory defaultBuilderFactory = new JavaFXBuilderFactory();
-    
+
     @Override
     public Builder<?> getBuilder(Class<?> type) {
         return (type == Map.Entry.class) ? new SimpleEntryBuilder()

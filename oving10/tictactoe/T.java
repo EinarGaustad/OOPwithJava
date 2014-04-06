@@ -4,12 +4,26 @@ import java.util.ArrayList;
 
 public class T extends TicTacToe implements GridProvider {
     
-    private ArrayList<GridListener> listeners = new ArrayList<GridListener>();
+    private ArrayList<GridListener> listeners;
 
     private GridProvider            grid;
     
     public T() {
+        super();
+        listeners = new ArrayList<GridListener>();
         grid = new T();
+        initGrid();
+    }
+    
+    public T(int M, int NxN) {
+        super(M, NxN);
+        listeners = new ArrayList<GridListener>();
+        grid = new T();
+        initGrid();
+    }
+    
+    // go through all element in grid:
+    private void initGrid() {
         for (int row = 0; row < grid.getGridHeight(); row++) {
             for (int column = 0; column < grid.getGridWidth(); column++) {
                 // Object element = grid.getGridElement(column, row);
@@ -17,7 +31,6 @@ public class T extends TicTacToe implements GridProvider {
             }
         }
     }
-
     @Override
     public void setInn(int x, int y) {
         if (sumere % 2 == 0) {

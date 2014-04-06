@@ -44,6 +44,13 @@ public interface GridGame {
      */
     public Integer doCommand(String command);
     
+    /**
+     * 
+     * @return metoder returnerer objektet som representerer selve rutenettet,
+     *         som ble initialisert av init-metoden. Ved hjelp av dette
+     *         objektet, kan GUI-et vise frem rutenettet og registrere seg som
+     *         lytter for å få beskjed om endringer i rutenettet.
+     */
     public GridProvider getGridProvider();
     
     /**

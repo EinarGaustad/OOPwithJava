@@ -29,7 +29,7 @@ public class GameGridPane extends GridPane {
         }
         return imageKeyMap;
     }
-    
+
     private List<Map.Entry<String, String>> imageKeyMapEntries = null;
     
     public List<Map.Entry<String, String>> getImageKeyMapEntries() {
@@ -38,9 +38,9 @@ public class GameGridPane extends GridPane {
         }
         return imageKeyMapEntries;
     }
-    
+
     private Map<String, Image> images = new HashMap<String, Image>();
-    
+
     public Image getImage(String imageKey, Object... contexts) {
         Image image = images.get(imageKey);
         if (image == null) {
