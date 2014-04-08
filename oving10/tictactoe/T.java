@@ -31,8 +31,18 @@ public class T extends TicTacToe implements GridProvider {
     }
     @Override
     public void setNy(char[][] tabel, int M, int NxN, int sumere) {
-        super.setNy(tabel, M, NxN, sumere);
-        initGrid();
+        // super.setNy(tabel, M, NxN, sumere);
+        // initGrid();
+        this.sumere = sumere;
+        this.M = M;
+        this.NxN = NxN;
+        init();
+        for (int i = 0; i < tabel.length; i++) {
+            for (int j = 0; j < tabel.length; j++) {
+                this.tabel[i][j] = tabel[i][j];
+                gridChanged(i, j);
+            }
+        }
     }
     
     @Override
