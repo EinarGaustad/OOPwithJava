@@ -28,6 +28,7 @@ public class T extends TicTacToe implements GridProvider {
             }
         }
     }
+
     @Override
     public void setNy(char[][] tabel, int M, int NxN, int sumere) {
         super.setNy(tabel, M, NxN, sumere);

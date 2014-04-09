@@ -12,6 +12,7 @@ public class TicTacToeProgram implements GridGame {
     private String     intro = "'< name' for load a game" + "\n"
                                      + "'> name' for save game";
     private String     error;
+
     @Override
     public void init(String level) {
 
@@ -97,7 +98,7 @@ public class TicTacToeProgram implements GridGame {
         else if (command.startsWith(">")) {
             writeGame(command);
         } else if (command.startsWith("u")) {
-            String message=tictactoe.undo();
+            String message = tictactoe.undo();
             if (message != null) {
                 output.info(message);
             } else {
@@ -110,7 +111,7 @@ public class TicTacToeProgram implements GridGame {
             } else {
                 output.info("redo is executed");
             }
-        }else {
+        } else {
             if (!tictactoe.isValid(command)) {
                 output.info("not valid input!");
             } else {
@@ -121,7 +122,6 @@ public class TicTacToeProgram implements GridGame {
                         + Integer.parseInt(command.charAt(1) + ""));
                 tictactoe.setInn(Integer.parseInt(command.charAt(0) + ""),
                         Integer.parseInt(command.charAt(1) + ""));
-                // output.info(tictactoe.turen() + "'s turn");
                 System.out.println(tictactoe.toString());
                 if (tictactoe.vinne() == 'O') {
                     output.info("Player O vin");
@@ -131,8 +131,7 @@ public class TicTacToeProgram implements GridGame {
                     output.info("Player X win");
                     return -1;
                 }
-                if (tictactoe.getSumere() >= Math
-                        .pow(tictactoe.getNxN(), 2)) {
+                if (tictactoe.getSumere() >= Math.pow(tictactoe.getNxN(), 2)) {
                     output.info("no winers, game over");
                     return 0;
                 }
@@ -148,9 +147,7 @@ public class TicTacToeProgram implements GridGame {
     
     @Override
     public String getTextFor(Object object) {
-        // System.out.println(object.toString());
         return object.toString();
-        // return null;
     }
     
     @Override

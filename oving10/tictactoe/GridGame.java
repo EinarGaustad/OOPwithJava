@@ -1,6 +1,5 @@
 package oving10.tictactoe;
 
-
 public interface GridGame {
     
     /**
