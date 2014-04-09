@@ -26,6 +26,10 @@ public class TicTacToe {
      * 
      */
     public TicTacToe(int M, int NxN) {
+        // if (M > NxN) {
+        // throw new IllegalArgumentException(
+        // "MN, M is winning number, N is playground size N*N, ' ! M (must) <= N'");
+        // }
         sumere = 0;
         this.NxN = NxN;
         this.M = M;
@@ -58,7 +62,7 @@ public class TicTacToe {
         this.tabel = tabel;
     }
     
-    public char turen() {// kunne dele med to en øke sumere en ruren
+    public char turen() {
         // start with O
         if (sumere % 2 == 0) {
             return 'O';
@@ -66,6 +70,7 @@ public class TicTacToe {
         return 'X';
     }
     
+
     public void setInn(int x, int y) {
         if (sumere % 2 == 0) {
             tabel[x][y] = 'O';

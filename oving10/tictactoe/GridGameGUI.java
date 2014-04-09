@@ -58,7 +58,7 @@ public class GridGameGUI extends Application implements GameOutput,
     private FileChooser               fileChooser;
     
     private Map<KeyCombination, Node> keyCombinationNodes;
-
+    
     @Override
     public void start(final Stage stage) throws Exception {
         List<String> parameters = getParameters().getRaw();
@@ -420,6 +420,14 @@ public class GridGameGUI extends Application implements GameOutput,
                 gridProvider.getGridHeight() * 16);
     }
     
+    // /*
+    // * Grid coordinates:
+    // * (0,0) | (1,0) | (2,0)
+    // * ---------------------
+    // * (0,1) | (1,1) | (2,1)
+    // * ---------------------
+    // * (0,2) | (1,2) | (2,2)
+    // */
     private void updateGrid(int x, int y, int w, int h) {
         for (int column = x; column < x + w; column++) {
             for (int row = y; row < y + h; row++) {

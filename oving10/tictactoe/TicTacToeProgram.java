@@ -6,12 +6,18 @@ public class TicTacToeProgram implements GridGame {
         GridGameGUI.main(new String[] { TicTacToeProgram.class.getName() });
     }
     
-    private T tictactoe;
-
+    private Undo       tictactoe;
+    private GameOutput output;
+    private boolean    runInit;
+    private String     intro = "'< name' for load a game" + "\n"
+                                     + "'> name' for save game";
+    private String     error;
     @Override
     public void init(String level) {
+
         System.out.println(level);
         if (level.length() >= 7 && level.contains("/") && level.contains(".")) {
+            runInit = true;
             readGame(level);
         } else {
             // test if input is valid:
@@ -19,30 +25,35 @@ public class TicTacToeProgram implements GridGame {
                     && (!Character.isDigit(level.charAt(0)) || !Character
                             .isDigit(level.charAt(1)))) {
                 // error report
-                output.error("invalid input!");
+                error = "invalid input! Write two digital number 'MN' example: 33";
             } else if (level.length() == 2
                     && (Character.isDigit(level.charAt(0)) || Character
                             .isDigit(level.charAt(1)))) {
                 System.out.println("level til tall: "
                         + Integer.parseInt(level.charAt(0) + "") + " "
                         + Integer.parseInt(level.charAt(1) + ""));
-                tictactoe = new T(Integer.parseInt(level.charAt(0) + ""),
+                if (Integer.parseInt(level.charAt(0) + "") > Integer
+                        .parseInt(level.charAt(1) + "")) {
+                    error = "'MN', M is winning number, N is playground size N*N, 'M (must) <= N'";
+                }
+                tictactoe = new Undo(Integer.parseInt(level.charAt(0) + ""),
                         Integer.parseInt(level.charAt(1) + ""));
-                System.out.println("tictactoe har laget N*N");
             } else {
-                tictactoe = new T();
+                tictactoe = new Undo();
                 System.out.println("tictactoe har laget 3*3");
+                System.out.println(": " + tictactoe);
             }
         }
     }
     
-    private GameOutput output;
-
     @Override
     public void run(GameOutput output) {
-        // System.out.println(tictactoe.turen() + " 's turn");
         this.output = output;
-        output.info(tictactoe.turen() + "'s turn");
+        if (error != null) {
+            output.error(error);
+        } else {
+            output.info(intro);
+        }
     }
     
     public void readGame(String read) {
@@ -55,7 +66,9 @@ public class TicTacToeProgram implements GridGame {
         }
         ReadAFile r = new ReadAFile();
         r.run(fileName);
-        init(r.getM() + "" + r.getNxN());
+        if (runInit) {
+            init(r.getM() + "" + r.getNxN());
+        }
         tictactoe.setNy(r.getTabel(), r.getM(), r.getNxN(), r.getSumere());
         System.out.println(tictactoe.toString());
     }
@@ -71,15 +84,33 @@ public class TicTacToeProgram implements GridGame {
 
     @Override
     public Integer doCommand(String command) {
+        if (error != null) {
+            output.info(error);
+            return 0;
+        }
         // read a file <
         if (command.startsWith("<")) {
+            runInit = false;
             readGame(command);
-            // return 0;
         }
         // write a file >
         else if (command.startsWith(">")) {
             writeGame(command);
-        } else {
+        } else if (command.startsWith("u")) {
+            String message=tictactoe.undo();
+            if (message != null) {
+                output.info(message);
+            } else {
+                output.info("undo is executed");
+            }
+        } else if (command.startsWith("r")) {
+            String message = tictactoe.redo();
+            if (message != null) {
+                output.info(message);
+            } else {
+                output.info("redo is executed");
+            }
+        }else {
             if (!tictactoe.isValid(command)) {
                 output.info("not valid input!");
             } else {
@@ -91,6 +122,7 @@ public class TicTacToeProgram implements GridGame {
                 tictactoe.setInn(Integer.parseInt(command.charAt(0) + ""),
                         Integer.parseInt(command.charAt(1) + ""));
                 // output.info(tictactoe.turen() + "'s turn");
+                System.out.println(tictactoe.toString());
                 if (tictactoe.vinne() == 'O') {
                     output.info("Player O vin");
                     return 1;
@@ -99,7 +131,7 @@ public class TicTacToeProgram implements GridGame {
                     output.info("Player X win");
                     return -1;
                 }
-                if (tictactoe.getSumere() + 1 >= Math
+                if (tictactoe.getSumere() >= Math
                         .pow(tictactoe.getNxN(), 2)) {
                     output.info("no winers, game over");
                     return 0;

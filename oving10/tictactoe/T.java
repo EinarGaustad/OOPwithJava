@@ -24,27 +24,16 @@ public class T extends TicTacToe implements GridProvider {
     public void initGrid() {
         for (int row = 0; row < grid.getGridHeight(); row++) {
             for (int column = 0; column < grid.getGridWidth(); column++) {
-                // Object element = grid.getGridElement(column, row);
-                gridChanged(column, row);
+                gridChanged(row, column);
             }
         }
     }
     @Override
     public void setNy(char[][] tabel, int M, int NxN, int sumere) {
-        // super.setNy(tabel, M, NxN, sumere);
-        // initGrid();
-        this.sumere = sumere;
-        this.M = M;
-        this.NxN = NxN;
-        init();
-        for (int i = 0; i < tabel.length; i++) {
-            for (int j = 0; j < tabel.length; j++) {
-                this.tabel[i][j] = tabel[i][j];
-                gridChanged(i, j);
-            }
-        }
+        super.setNy(tabel, M, NxN, sumere);
+        initGrid();
     }
-    
+
     @Override
     public void setInn(int x, int y) {
         super.setInn(x, y);
@@ -64,7 +53,7 @@ public class T extends TicTacToe implements GridProvider {
     @Override
     public Object getGridElement(int x, int y) {
         System.out.println("x y: " + x + " " + y);
-        return tabel[x][y];
+        return tabel[y][x];
     }
     
     @Override
@@ -83,8 +72,7 @@ public class T extends TicTacToe implements GridProvider {
     
     public void gridChanged(int x, int y) {
         for (GridListener listener : listeners) {
-            listener.gridChanged(this, x, y, 1, 1);// getGridWidth(),
-                                                   // getGridHeight());
+            listener.gridChanged(this, y, x, 1, 1);
         }
     }
 }
