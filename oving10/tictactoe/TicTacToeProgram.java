@@ -10,13 +10,12 @@ public class TicTacToeProgram implements GridGame {
     private GameOutput output;
     private boolean    runInit;
     private String     intro = "'< name' for load a game" + "\n"
-                                     + "'> name' for save game";
+                                     + "'> name' for save game" + "\n"
+                                     + "u for undo" + "\n" + "r for redo";
     private String     error;
 
     @Override
     public void init(String level) {
-
-        System.out.println(level);
         if (level.length() >= 7 && level.contains("/") && level.contains(".")) {
             runInit = true;
             readGame(level);

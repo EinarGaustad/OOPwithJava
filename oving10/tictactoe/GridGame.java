@@ -13,7 +13,7 @@ public interface GridGame {
      *            er brukeren som skriver String-argumentet inn, og det er opp
      *            til implementasjonen av metoden å tolke og bruke det.
      */
-    public void init(String streng);
+    public void init(String string);
     
     /**
      * 
@@ -25,7 +25,7 @@ public interface GridGame {
      *            GameOutput-metodene angjør hvordan meldinger vises til
      *            brukeren.)
      */
-    public void run(GameOutput game);
+    public void run(GameOutput output);
     
     /**
      * 

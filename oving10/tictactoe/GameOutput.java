@@ -8,7 +8,7 @@ public interface GameOutput {
      *            viser String-argumentet som en enkelt statusoppdatering,
      *            f.eks. "x sin tur" eller "4 av 8 bokser er på plass".
      */
-    public void info(String messgae);
+    public void info(String message);
     
     /**
      * 

@@ -53,7 +53,6 @@ public class T extends TicTacToe implements GridProvider {
     
     @Override
     public Object getGridElement(int x, int y) {
-        System.out.println("x y: " + x + " " + y);
         return tabel[y][x];
     }
     
