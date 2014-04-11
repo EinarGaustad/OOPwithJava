@@ -23,7 +23,8 @@ public class Sokoban implements GridGame {
             sokoban = new GridMove("0");
         }
         message = "w: up" + "\n" + "s: down" + "\n" + "a: left" + "\n"
-                + "d: righ" + "\n" + "<: load a Game" + "\n" + ">: save Game";
+                + "d: righ" + "\n" + "<: load a Game" + "\n" + ">: save Game"
+                + "\n" + "u: undo" + "\n" + "r: redo";
     }
 
     @Override
@@ -62,7 +63,6 @@ public class Sokoban implements GridGame {
      */
     @Override
     public Integer doCommand(String command) {
-        // System.out.println(sokoban.toString());
         if ("wsad".contains(command.charAt(0) + "")) {
             char move = command.charAt(0);
             sokoban.moveTo(move);
@@ -84,6 +84,20 @@ public class Sokoban implements GridGame {
                 saveGame(command.substring(2));
             } else {
                 output.error("Wrong format! use format: '< <name>");
+            }
+        } else if (command.startsWith("u")) {
+            String returnMessage = sokoban.undo();
+            if (returnMessage == "done") {
+                output.info("undo successed!");
+            } else {
+                output.error(returnMessage);
+            }
+        } else if (command.startsWith("r")) {
+            String returnMessage = sokoban.redo();
+            if (returnMessage == "") {
+                output.info("redo action done!");
+            } else {
+                output.error(returnMessage);
             }
         }
         return null;

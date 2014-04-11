@@ -77,7 +77,7 @@ public class Grid implements GridProvider {
     }
     
     public char[][] getGridTable() {
-        return board;
+        return this.board;
     }
     public void loadGrid(char[][] board) {
         this.board = board;

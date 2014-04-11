@@ -1,17 +1,52 @@
 package oving10.sokoban;
 
+import java.util.Stack;
+
 public class GridMove {
 
     private Grid    spille;
-
+    private Stack<char[][]> tracker;
+    private Stack<char[][]> redoStack;
+    
     public GridMove() {
         spille = new Grid();
+        initStack();
     }
     
     public GridMove(String level) {
         spille = new Grid(level);
+        initStack();
     }
     
+    public void initStack() {
+        tracker = new Stack<char[][]>();
+        redoStack = new Stack<char[][]>();
+    }
+    
+    public String undo() {
+        String message;
+        if (tracker.size() > 0) {
+            char[][] tempGrid = tracker.pop();
+            spille.loadGrid(tempGrid);
+            redoStack.push(tempGrid);
+            message = "done";
+        }else{
+            message = "Can not undo! Stack er empty!";
+        }
+        return message;
+    }
+    
+    public String redo() {
+        String message = "";
+        if (redoStack.size() > 0) {
+            char[][] tempGrid = redoStack.pop();
+            spille.loadGrid(tempGrid);
+            tracker.push(tempGrid);
+        } else {
+            message = "can not redo! Stack er empty!";
+        }
+        return message;
+    }
     public Grid getGrid() {
         return this.spille;
     }
@@ -86,6 +121,14 @@ public class GridMove {
                     }
                 }
             }
+            char[][] newtable = new char[spille.getGridHeight()][spille
+                    .getGridWidth()];
+            for (int k = 0; k < newtable.length; k++) {
+                for (int k2 = 0; k2 < newtable.length; k2++) {
+                    newtable[k][k2] = spille.getGridTable()[k][k2];
+                }
+            }
+            tracker.push(newtable);
         }
     }
     
