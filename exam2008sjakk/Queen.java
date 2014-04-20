@@ -5,20 +5,17 @@ public class Queen implements Piece {
     
     @Override
     public PieceColor getPieceColor() {
-        // TODO Auto-generated method stub
-        return null;
+        return this.getPieceColor();
     }
     
     @Override
     public boolean canTake(String from, String to, Board board) {
-        // TODO Auto-generated method stub
-        return false;
+        return this.canTake(from, to, board);
     }
     
     @Override
     public boolean canMove(String from, String to, Board board) {
-        // TODO Auto-generated method stub
-        return false;
+        return this.canMove(from, to, board);
     }
     
 }
