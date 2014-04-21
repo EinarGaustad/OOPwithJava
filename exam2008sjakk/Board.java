@@ -12,7 +12,7 @@ public class Board {
     
     public void initBoard() {
         for (int i = 0; i < 8; i++) {
-            ArrayList<Piece> insideList=new ArrayList<Piece>();
+            ArrayList<Piece> insideList = new ArrayList<Piece>();
             for (int j = 0; j < 8; j++) {
                 insideList.add(null);
             }
@@ -27,9 +27,28 @@ public class Board {
     }
     
     public void setPiece(String position, Piece piece) {
+        if (isValidPosition(position)) {
+            int x = position.charAt(0) - 'a';
+            int y = position.charAt(1) - '0';
+            board.get(y).set(x, piece);
+        } else {
+            throw new IllegalArgumentException("not vaild position");
+        }
+    }
+    
+    public boolean isValidPosition(String position) {
+        if (position.length() != 2) {
+            return false;
+        }
         int x = position.charAt(0) - 'a';
         int y = position.charAt(1) - '0';
-        board.get(y).set(x, piece);
+        if (x >= 0 & x < 8 & y >= 0 & y < 8) {
+            return true;
+        }
+        return false;
+    }
+    pubilc boolean isLegalMove(PieceColor color, String form, String to){
+        
     }
     
     public boolean isStraight(String from, String to) {
@@ -73,7 +92,7 @@ public class Board {
         if (isStraight(from, to)) {
             if (x == tx) {
                 int miniy = Math.min(y, ty);
-                for (int i = 0; i < Math.abs((y - ty))-1; i++) {
+                for (int i = 0; i < Math.abs((y - ty)) - 1; i++) {
                     if (board.get(miniy).get(x) != null) {
                         return true;
                     }
