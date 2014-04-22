@@ -5,10 +5,12 @@ import java.util.ArrayList;
 public class Board {
     
     private static ArrayList<ArrayList<Piece>> board;
+    private ArrayList<Observer>                observerList;
     private Piece                              wk;
     private Piece                              bk;
     
     public Board() {
+        observerList = new ArrayList<Observer>();
         board = new ArrayList<ArrayList<Piece>>();
         wk = new King("WHITE");
         bk = new King("BLACK");
@@ -87,6 +89,7 @@ public class Board {
             int x = position.charAt(0) - 'a';
             int y = position.charAt(1) - '1';
             board.get(y).set(x, piece);
+            isChanged(this, position, piece);
         } else {
             throw new IllegalArgumentException("not vaild position");
         }
@@ -298,5 +301,15 @@ public class Board {
         }
         s += "\n" + " ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░";
         return s;
+    }
+    
+    public void addObserver(Observer observer) {
+        observerList.add(observer);
+    }
+    
+    public void isChanged(Board board, String pos, Piece piece) {
+        for (Observer observer : observerList) {
+            observer.boardChanged(board, pos, piece);
+        }
     }
 }
