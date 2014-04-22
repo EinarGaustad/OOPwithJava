@@ -10,11 +10,15 @@ public class PieceColor {
     }
     
     public String getOtherColor(){
-        return pieceColor;
+        if (pieceColor == "WHITE") {
+            return "BLACK";
+        }
+        else{
+            return "WHITE";
+        }
     }
     
     public String getPieceColor() {
         return pieceColor;
     }
-
 }
