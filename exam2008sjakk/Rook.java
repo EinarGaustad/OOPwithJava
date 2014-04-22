@@ -2,9 +2,7 @@ package exam2008sjakk;
 
 
 public class Rook extends AbstractPiece implements Piece {
-    
-    private PieceColor color;
-    
+
     public Rook(String color) {
         this.color = new PieceColor(color);
     }

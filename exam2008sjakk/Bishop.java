@@ -3,7 +3,6 @@ package exam2008sjakk;
 
 public class Bishop extends AbstractPiece implements Piece {
     
-    private PieceColor color;
     
     public Bishop(String color) {
         this.color = new PieceColor(color);

@@ -5,9 +5,14 @@ import java.util.ArrayList;
 public class Board {
     
     private static ArrayList<ArrayList<Piece>> board;
+    private Piece                              wk;
+    private Piece                              bk;
     
     public Board() {
         board = new ArrayList<ArrayList<Piece>>();
+        wk = new King("WHITE");
+        bk = new King("BLACK");
+        initBoard();
     }
     
     // ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░
@@ -32,11 +37,12 @@ public class Board {
             board.get(1).set(i, new Pawn("WHITE"));
             board.get(6).set(i, new Pawn("BLACK"));
         }
+
         board.get(0).set(0, new Rook("WHITE"));
         board.get(0).set(1, new Knight("WHITE"));
         board.get(0).set(2, new Bishop("WHITE"));
         board.get(0).set(3, new Queen("WHITE"));
-        board.get(0).set(4, new King("WHITE"));
+        board.get(0).set(4, wk);
         board.get(0).set(5, new Bishop("WHITE"));
         board.get(0).set(6, new Knight("WHITE"));
         board.get(0).set(7, new Rook("WHITE"));
@@ -45,7 +51,7 @@ public class Board {
         board.get(7).set(1, new Knight("BLACK"));
         board.get(7).set(2, new Bishop("BLACK"));
         board.get(7).set(3, new Queen("BLACK"));
-        board.get(7).set(4, new King("BLACK"));
+        board.get(7).set(4, bk);
         board.get(7).set(5, new Bishop("BLACK"));
         board.get(7).set(6, new Knight("BLACK"));
         board.get(7).set(7, new Rook("BLACK"));
@@ -54,7 +60,7 @@ public class Board {
     public Piece getPiece(String position) {
         int x = position.charAt(0) - 'a';
         int y = position.charAt(1) - '1';
-        return board.get(7 - y).get(x);
+        return board.get(y).get(x);
     }
     
     public String getPiecePosition(Piece piece) {
@@ -69,10 +75,17 @@ public class Board {
         return null;
     }
     
+    public boolean checkmate() {
+        if (getPiecePosition(bk) == null || getPiecePosition(wk) == null) {
+            return true;
+        }
+        return false;
+    }
+    
     public void setPiece(String position, Piece piece) {
         if (isValidPosition(position)) {
             int x = position.charAt(0) - 'a';
-            int y = position.charAt(1) - '0';
+            int y = position.charAt(1) - '1';
             board.get(y).set(x, piece);
         } else {
             throw new IllegalArgumentException("not vaild position");
@@ -92,19 +105,18 @@ public class Board {
     }
     
     public boolean isLegalMove(PieceColor color, String from, String to) {
-        if (color.getPieceColor() == this.getPiece(from).getPieceColor()
-                .getPieceColor()) {
+        if (color.getColor() == this.getPiece(from).getPieceColor().getColor()) {
             return true;
         }
         return false;
     }
     
     public void movePiece(String from, String to) {
-        this.setPiece(to, this.getPiece(from));
-        this.setPiece(from, null);
+        setPiece(to, getPiece(from));
+        setPiece(from, null);
     }
     
-    // ░░a░ b░c░d ░e░f░░g░h░░
+    // ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░
     // 8 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ 8
     // 7 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ 7
     // 6 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 6
@@ -113,9 +125,27 @@ public class Board {
     // 3 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 3
     // 2 ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ 2
     // 1 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ 1
-    // ░░a░ b░c░d ░e░f░░g░h░░
+    // ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░
     public boolean isCheck(PieceColor color) {
-        // getPiecePosition();
+        String posK;
+        if (color.getColor() == "BLACK") {
+            posK = getPiecePosition(bk);
+        } else {
+            posK = getPiecePosition(wk);
+        }
+        for (int i = 8; i > 0; i--) {
+            for (int j = 0; j < 8; j++) {
+                String pos = (char) (j + 'a') + "" + i;
+                if (getPiece(pos) != null) {
+                    if (color.getOtherColor() == getPiece(pos).getPieceColor()
+                            .getColor()) {
+                        if (getPiece(pos).canTake(pos, posK, this)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
         return false;
     }
     
@@ -223,17 +253,17 @@ public class Board {
     // 1 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ 1
     // ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░
     public String toString() {
-        String s = "░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░";
+        String s = " ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░";
         for (int i = 8; i > 0; i--) {
             s += "\n";
             s += " " + i + " ";
             for (int j = 0; j < 8; j++) {
-                String p = "" + (char) ((char) j + 'a') + "" + i;
-                if (getPiece(p) == null) {
+                String pos = "" + (char) ((char) j + 'a') + "" + i;
+                if (getPiece(pos) == null) {
                     s += "▓ ";
                 } else {
-                    Piece piece = getPiece(p);
-                    if (piece.getPieceColor().getPieceColor() == "WHITE") {
+                    Piece piece = getPiece(pos);
+                    if (piece.getPieceColor().getColor() == "BLACK") {
                         if (piece instanceof King) {
                             s += "♚ ";
                         } else if (piece instanceof Queen) {
@@ -247,7 +277,7 @@ public class Board {
                         } else if (piece instanceof Pawn) {
                             s += "♟ ";
                         }
-                    } else if (piece.getPieceColor().getPieceColor() == "WHITE") {
+                    } else if (piece.getPieceColor().getColor() == "WHITE") {
                         if (piece instanceof King) {
                             s += "♔ ";
                         } else if (piece instanceof Queen) {
@@ -264,9 +294,9 @@ public class Board {
                     }
                 }
             }
-            s += " " + i;
+            s += "" + i;
         }
-        s += "\n" + "░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░";
+        s += "\n" + " ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░";
         return s;
     }
 }

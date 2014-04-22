@@ -3,7 +3,6 @@ package exam2008sjakk;
 
 public class Knight extends AbstractPiece implements Piece {
     
-    private PieceColor color;
     
     public Knight(String color) {
         this.color = new PieceColor(color);

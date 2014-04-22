@@ -1,9 +1,7 @@
 package exam2008sjakk;
 
 public class Pawn extends AbstractPiece implements Piece {
-    
-    private PieceColor color;
-    
+
     public Pawn(String color) {
         this.color = new PieceColor(color);
     }
@@ -24,8 +22,8 @@ public class Pawn extends AbstractPiece implements Piece {
 
     @Override
     public boolean canTake(String from, String to, Board board) {
-        if (board.getPiece(from).getPieceColor().getPieceColor() == "WHITE") {
-            if (board.getPiece(to).getPieceColor().getPieceColor() == "BLACK"
+        if (board.getPiece(from).getPieceColor().getColor() == "WHITE") {
+            if (board.getPiece(to).getPieceColor().getColor() == "BLACK"
                     & from.charAt(1) + 1 == to.charAt(1)) {
                 if (from.charAt(0) + 1 == to.charAt(0)
                         || from.charAt(0) - 1 == to.charAt(0)) {
@@ -33,8 +31,8 @@ public class Pawn extends AbstractPiece implements Piece {
                 }
             }
         }
-        if (board.getPiece(from).getPieceColor().getPieceColor() == "BLACK") {
-            if (board.getPiece(to).getPieceColor().getPieceColor() == "WHITE"
+        if (board.getPiece(from).getPieceColor().getColor() == "BLACK") {
+            if (board.getPiece(to).getPieceColor().getColor() == "WHITE"
                     & from.charAt(1) - 1 == to.charAt(1)) {
                 if (from.charAt(0) + 1 == to.charAt(0)
                         || from.charAt(0) - 1 == to.charAt(0)) {
@@ -48,7 +46,7 @@ public class Pawn extends AbstractPiece implements Piece {
     @SuppressWarnings("static-access")
     @Override
     public boolean canMove(String from, String to, Board board) {
-        if (board.getPiece(from).getPieceColor().getPieceColor() == "WHITE") {
+        if (board.getPiece(from).getPieceColor().getColor() == "WHITE") {
             if (board.getPiecePosition(this).charAt(1) == 2) {
                 if (from.charAt(0) == to.charAt(0)) {
                     if (to.charAt(1) == 4 & !board.isOccupiedBetween(from, to)) {
@@ -61,7 +59,7 @@ public class Pawn extends AbstractPiece implements Piece {
                 return true;
             }
         }
-        if (color.getPieceColor() == "BLACK") {
+        if (color.getColor() == "BLACK") {
             if (board.getPiecePosition(this).charAt(1) == 7) {
                 if (from.charAt(0) == to.charAt(0)) {
                     if (to.charAt(1) == 5 & !board.isOccupiedBetween(from, to)) {

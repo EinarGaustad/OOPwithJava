@@ -3,14 +3,14 @@ package exam2008sjakk;
 
 public class PieceColor {
     
-    private String pieceColor;
+    private String color;
     
     public PieceColor(String color) {
-        pieceColor = color;
+        this.color = color;
     }
     
     public String getOtherColor(){
-        if (pieceColor == "WHITE") {
+        if (this.color == "WHITE") {
             return "BLACK";
         }
         else{
@@ -18,7 +18,11 @@ public class PieceColor {
         }
     }
     
-    public String getPieceColor() {
-        return pieceColor;
+    public String getColor() {
+        return this.color;
+    }
+    
+    public String toString() {
+        return this.color;
     }
 }
