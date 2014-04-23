@@ -1,11 +1,6 @@
 package oving6.cardcontainer;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-
 import oving5.Card.Card;
-
-// import junit.framework.AssertionFailedError;
 
 /***
  * CardDeck-klassen inneholder initielt et visst antall kort av de fire
@@ -16,8 +11,6 @@ import oving5.Card.Card;
  * 
  */
 public class CardDeck extends oving5.Card.CardDeck implements CardContainer {
-    
-    protected ArrayList<Card> cards;
     
     public CardDeck(int suitSize) {
         super(suitSize);
@@ -44,8 +37,7 @@ public class CardDeck extends oving5.Card.CardDeck implements CardContainer {
     }
     
     @Override
-    public Iterator<Card> iterator() {
-        // TODO Auto-generated method stub
-        return null;
+    public CardContainerIterator iterator() {
+        return new CardContainerIterator(this);
     }
 }

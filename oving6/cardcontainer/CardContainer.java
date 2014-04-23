@@ -1,7 +1,5 @@
 package oving6.cardcontainer;
 
-import java.util.Iterator;
-
 import oving5.Card.Card;
 
 /***
@@ -23,5 +21,6 @@ public interface CardContainer {
 	
 	public Card getCard(int n);
 
-	public Iterator<Card> iterator();
+    public CardContainerIterator iterator();
+
 }

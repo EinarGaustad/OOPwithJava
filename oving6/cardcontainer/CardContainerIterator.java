@@ -6,9 +6,8 @@ import oving5.Card.Card;
 
 public class CardContainerIterator implements Iterator<Card>{
 	
-	//private ArrayList<CardContainer> cards;
 	private CardContainer cardcontainer;
-	int neste = -1;
+    private int           neste = -1;
 
 	public CardContainerIterator(CardContainer cardcontainer) {
 		this.cardcontainer = cardcontainer;
@@ -16,7 +15,7 @@ public class CardContainerIterator implements Iterator<Card>{
 
 	@Override
 	public boolean hasNext() {
-		return neste < cardcontainer.getCardCount();
+        return neste < cardcontainer.getCardCount() - 1;
 	}
 
 	@Override
@@ -27,9 +26,7 @@ public class CardContainerIterator implements Iterator<Card>{
 	@Override
 	public Card next() {
 		neste++;
-		System.out.println("n"+neste);
+        System.out.println("Card next++: " + neste);
 		return cardcontainer.getCard(neste);
 	}
-	
-
 }
