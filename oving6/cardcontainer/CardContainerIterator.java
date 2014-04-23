@@ -2,6 +2,8 @@ package oving6.cardcontainer;
 
 import java.util.Iterator;
 
+import oving5.Card.Card;
+
 public class CardContainerIterator implements Iterator<Card>{
 	
 	//private ArrayList<CardContainer> cards;

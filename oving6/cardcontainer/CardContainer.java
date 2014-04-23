@@ -2,6 +2,8 @@ package oving6.cardcontainer;
 
 import java.util.Iterator;
 
+import oving5.Card.Card;
+
 /***
  * Denne oppgaven handler om å lage et felles grensesnitt 
  * for CardDeck og CardHand, laget i oppgaven om 

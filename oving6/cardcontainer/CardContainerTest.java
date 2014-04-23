@@ -1,7 +1,7 @@
 package oving6.cardcontainer;
 
 import com.google.common.collect.Lists;
-import oving6.cardcontainer.Card;
+import oving5.Card.Card;
 import oving6.cardcontainer.CardContainer;
 import oving6.cardcontainer.CardContainerIterator;
 import oving6.cardcontainer.CardDeck;
