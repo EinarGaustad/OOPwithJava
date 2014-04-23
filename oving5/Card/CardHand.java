@@ -1,6 +1,6 @@
 package oving5.Card;
 
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 /***
  * CardHand-klassen inneholder initielt ingen kort, 
@@ -12,16 +12,14 @@ import java.util.ArrayList;
  *
  */
 public class CardHand extends CardDeck{
-	private ArrayList<Card> cards;
-	//private CardDeck cardDeck = new CardDeck();
-	public CardHand(){
-		cards = new ArrayList<Card>();
-	}
 	
 	public void addCard(Card nyCard){
 		cards.add(nyCard);
 	}
 	public Card play(int n){
-		return cards.remove(n-1);
+        System.out.println("card play called: " + this.toString() + " : "
+                + cards.get(n));
+        return cards.remove(n);
 	}
+    
 }
