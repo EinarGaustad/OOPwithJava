@@ -10,7 +10,6 @@ public class StringGridImpl implements StringGrid {
     public StringGridImpl() {
         grid = new ArrayList<ArrayList<String>>();
         init(1, 1);
-        System.out.println("stringgridimpl(): " + toString());
     }
     
     public StringGridImpl(int row, int column) {
@@ -40,18 +39,14 @@ public class StringGridImpl implements StringGrid {
     }
     
     public void setElement(int row, int column, String element) {
-        System.out.println("setelement: " + toString());
-        System.out.println("row: " + row + " column: " + column + " element: "
-                + element);
         grid.get(row).set(column, element);
-        System.out.println("set element done: " + toString());
     }
     
     @Override
     public Iterator<String> iterator() {
-        ArrayList<String> alist=new ArrayList<String>();
-        for(ArrayList<String> list: grid){
-            for(String s: list){
+        ArrayList<String> alist = new ArrayList<String>();
+        for (ArrayList<String> list : grid) {
+            for (String s : list) {
                 alist.add(s);
             }
         }
@@ -60,9 +55,9 @@ public class StringGridImpl implements StringGrid {
     
     public String toString() {
         String s = "\n";
-        for(ArrayList<String> list: grid){
-            for(String ss: list){
-                s+=ss+", ";
+        for (ArrayList<String> list : grid) {
+            for (String ss : list) {
+                s += ss + ", ";
             }
             s += "\n";
         }

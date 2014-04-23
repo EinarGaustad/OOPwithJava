@@ -14,53 +14,54 @@ public class StringGridIterator implements Iterator<String> {
     
     private StringGrid stringgrid;
     private int        next = -1;
+    private boolean    rowMajor;
     
     /**
      * 
      * @param stringgrid
-     * @param b
+     * @param rowMajor
      *            konstruktør som tar inn StringGrid-objektet som
      *            StringGridIterator-klassen skal iterere over i tillegg til en
      *            logisk verdi som angir om iterasjonen skal være bortover først
      *            (rowMajor=true) eller nedover først (rowMajor=false).
      */
-    public StringGridIterator(StringGrid stringgrid, boolean b) {
-        if (b) {
-            this.stringgrid = stringgrid;
-        } else {
-            StringGrid newsg = new StringGridImpl();
-            for (int i = 0; i < stringgrid.getRowCount(); i++) {
-                for (int j = 0; j < stringgrid.getColumnCount(); j++) {
-                    newsg.setElement(i, j, stringgrid.getElement(
-                            stringgrid.getRowCount() - i,
-                            stringgrid.getColumnCount() - j));
-                }
-            }
-            this.stringgrid = newsg;
-        }
+    public StringGridIterator(StringGrid stringgrid, boolean rowMajor) {
+        this.stringgrid = stringgrid;
+        this.rowMajor = rowMajor;
+
     }
     
     @Override
     public boolean hasNext() {
+        System.out.println("string grid size:  " + stringgrid.getColumnCount()
+                * stringgrid.getRowCount() + " hasnext: " + next);
         return next < stringgrid.getColumnCount() * stringgrid.getRowCount()
                 - 1;
     }
     
     @Override
     public String next() {
-        
-        ArrayList<String> alist = new ArrayList<String>();
-        for (int i = 0; i < stringgrid.getRowCount(); i++) {
+        next++;
+        ArrayList<String> alist;
+        if (rowMajor) {
+            alist = new ArrayList<String>();
+            for (int i = 0; i < stringgrid.getRowCount(); i++) {
+                for (int j = 0; j < stringgrid.getColumnCount(); j++) {
+                    alist.add(stringgrid.getElement(i, j));
+                }
+            }
+        } else {
+            alist = new ArrayList<String>();
             for (int j = 0; j < stringgrid.getColumnCount(); j++) {
-                alist.add(stringgrid.getElement(i, j));
+                for (int i = 0; i < stringgrid.getRowCount(); i++) {
+                    alist.add(stringgrid.getElement(i, j));
+                }
             }
         }
-        // int row = next / stringgrid.getColumnCount();
-        // int column = next % stringgrid.getColumnCount();
-        next++;
         System.out.println("stringgrid colum: " + stringgrid.getColumnCount()
-                + " row:  "
-                + " next: " + next);
+                + " row:  " + stringgrid.getRowCount() + " next: " + next
+                + " alist size: " + alist.size());
+        
         return alist.get(next);
     }
     
