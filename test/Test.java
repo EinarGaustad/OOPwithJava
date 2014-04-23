@@ -45,6 +45,7 @@ public class Test {
             if (it.hasNext()) {
                 String s = list.iterator().next();
                 String ss = list.iterator().next();
+                System.out.println("ss: " + ss);
                 System.out.println(s + " : " + it.next());
                 System.out.println(list.get(j));
                 System.out.println("2: "
@@ -59,8 +60,4 @@ public class Test {
         }
     }
     
-    private static Iterator<String> iterator(List<String> list) {
-        // TODO Auto-generated method stub
-        return null;
-    }
 }
