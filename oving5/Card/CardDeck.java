@@ -91,25 +91,11 @@ public class CardDeck {
      * toppen og kortet på bunnen forblir på bunnen
      */
     public void shufflePerfectly() {
-        System.out.println("shffleperfectly called : " + toString());
-        ArrayList<Card> cardsA, cardsB = new ArrayList<Card>();
-        int size = cards.size();
-        cardsA = (ArrayList<Card>) cards.subList(0, size / 2);
-        cardsB = (ArrayList<Card>) cards.subList(size / 2, size);
-        int j = 0;
-        for (int i = 0; i < size / 2; i++) {
-            cards.set(j, cardsA.get(i));
-            j++;
-            cards.set(j, cardsB.get(i));
-            j++;
+        int hs=cards.size()/2;
+        for (int i = 0; i < hs; i++) {
+            Card card = cards.remove(hs + i);
+            cards.add(i * 2 + 1, card);
         }
-        System.out.println("shffleperfectly done: " + toString());
-        
-        // int halfSize = cards.size() / 2;
-        // for (int i = 0; i < halfSize; i++) {
-        // Card card = cards.remove(halfSize + i);
-        // cards.add(i * 2 + 1, card);
-//        }
     }
     
     public String toString() {
