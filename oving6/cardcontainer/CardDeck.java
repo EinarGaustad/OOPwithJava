@@ -19,6 +19,7 @@ public class CardDeck extends oving5.Card.CardDeck implements CardContainer {
     public CardDeck() {
         super();
     }
+
     @Override
     public Card getCard(int n) {
         if (n > cards.size() || n < 0) {
