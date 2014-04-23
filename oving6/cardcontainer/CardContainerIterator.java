@@ -25,7 +25,6 @@ public class CardContainerIterator implements Iterator<Card> {
     @Override
     public Card next() {
         neste++;
-        System.out.println("Card next++: " + neste);
         return cardcontainer.getCard(neste);
     }
 }
