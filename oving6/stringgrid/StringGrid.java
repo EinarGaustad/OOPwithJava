@@ -9,13 +9,32 @@ method and read with the getElement method.
  */
 public interface StringGrid extends Iterable<String>{
 	 
-    // Returns the number of rows in this StringGrid
-    int getRowCount();
-    // Returns the number of columns in this StringGrid
+    /**
+     * 
+     * @return the number of rows in this StringGrid
+     */
+    public int getRowCount();
+    
+    /**
+     * @return the number of columns in this StringGrid
+     */
     public int getColumnCount();
  
-    // Returns the String at the given row and column. Throws an IllegalArgumentException if the row or column is out of range
+    /**
+     * @param row
+     * @param column
+     * @return the String at the given row and column. Throws an
+     *         IllegalArgumentException if the row or column is out of range
+     */
     public String getElement(int row, int column);
-    // Sets the String at the given row and column. Throws an IllegalArgumentException if the row or column is out of range
+    
+    /**
+     * Sets the String at the given row and column. Throws an
+     * IllegalArgumentException if the row or column is out of range
+     * 
+     * @param row
+     * @param column
+     * @param element
+     */
     public void setElement(int row, int column, String element);
 }
