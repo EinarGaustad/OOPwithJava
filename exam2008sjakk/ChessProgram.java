@@ -18,6 +18,21 @@ public class ChessProgram implements Observer {
     public void init() {
         game = new Board();
         game.addObserver(this);
+        
+        // test:
+        int nr = 0;
+        for (String position : game.Iterator()) {
+            nr++;
+            System.out.print(" " + position);
+            if (nr == 8) {
+                System.out.println();
+                nr = 0;
+            }
+        }
+        System.out.println("\n" + "test: black king position: "
+                + game.findKing(new PieceColor("BLACK")));
+        System.out.println("\n" + "test: White king position: "
+                + game.findKing(new PieceColor("WHITE")));
     }
     
     public void run() {
@@ -70,4 +85,5 @@ public class ChessProgram implements Observer {
         System.out.println(pos + " changed");
         System.out.println(board.toString());
     }
+
 }

@@ -65,6 +65,11 @@ public class Board {
         return board.get(y).get(x);
     }
     
+    public boolean isPiece(String position){
+        int x = position.charAt(0) - 'a';
+        int y = position.charAt(1) - '1';
+        return board.get(y).get(x) instanceof Piece;
+    }
     public String getPiecePosition(Piece piece) {
         for (int i = 7; i >= 0; i--) {
             for (int j = 0; j < 8; j++) {
@@ -303,13 +308,61 @@ public class Board {
         return s;
     }
     
+    /**
+     * 
+     * @return row size
+     */
+    public int getRowCount() {
+        return board.size();
+    }
+    
+    /**
+     * 
+     * @return column size
+     */
+    public int getColumnCount() {
+        return board.get(0).size();
+    }
+    
+    /**
+     * 
+     * @param add
+     *            observer to ovserver list
+     */
     public void addObserver(Observer observer) {
         observerList.add(observer);
     }
     
+    /**
+     * 
+     * @param board
+     * @param pos
+     * @param piece
+     *            report changes to all observer in list
+     */
     public void isChanged(Board board, String pos, Piece piece) {
         for (Observer observer : observerList) {
             observer.boardChanged(board, pos, piece);
         }
+    }
+    
+    /**
+     * 
+     * @return BoardIterator
+     */
+    public ArrayList<String> Iterator() {
+        return new BoardIterator(this).getPosList();
+    }
+    
+    public String findKing(PieceColor pieceColor) {
+        for (String s : Iterator()) {
+            if (isPiece(s)) {
+                if (getPiece(s).getPieceColor().getColor() == pieceColor
+                            .getColor() & getPiece(s) instanceof King) {
+                return s;
+                }
+            }
+        }
+        return "not found!";
     }
 }
