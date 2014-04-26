@@ -1,5 +1,9 @@
 package exam2008sjakk;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 /**
  * 
  * @author
@@ -62,6 +66,22 @@ public class V2Board {
         return getColumnDistance(from, to) == getRowDistance(from, to);
     }
     
+    /**
+     * 
+     * @param from
+     * @param to
+     * @return Static-modifikatoren angir at metoden ikke utføres i kontekst av
+     *         en (implisitt) instans, og følgelig ikke har tilgang til annet
+     *         enn andre static-metoder og static-felt.
+     * 
+     *         Det er greit å markere at en metode ikke bruker instansdata ved
+     *         å bruke static-modifikatoren.
+     * 
+     *         Merk at dette gjelder isStraight og isDiagonal, men ikke
+     *         isOccupiedBetween, siden de første kun trenger parametrene for å
+     *         klassifisere flyttet, mens sistnevnte trenger å sjekke brikkene
+     *         som er på brettet.
+     */
     public boolean isOccupiedBetween(String from, String to) {
         int fromColumn = V2Board.getColumnIndex(from), fromRow = V2Board
                 .getRowIndex(from);
@@ -80,11 +100,66 @@ public class V2Board {
         return false;
     }
     
-    private static int getRowDistance(String from, String to) {
+    public static int getRowDistance(String from, String to) {
         return Math.abs(from.charAt(0) - to.charAt(0));
     }
     
-    private static int getColumnDistance(String from, String to) {
+    public static int getColumnDistance(String from, String to) {
         return Math.abs(from.charAt(1) - to.charAt(1));
+    }
+    
+    public boolean isLegalMove(V2PieceColor pieceColor, String from, String to) {
+        try {
+            validateBoardPosition(from);
+            validateBoardPosition(to);
+        } catch (IllegalBoardPositionException e) {
+            return false;
+        }
+        V2Piece piece = getPiece(from), otherPiece = getPiece(to);
+        if (piece == null || piece.getPieceColor() != pieceColor) {
+            return false;
+        }
+        return (otherPiece != null & otherPiece.getPieceColor() != pieceColor) ? piece
+                .canTake(from, to, this) : otherPiece == null
+                & piece.canMove(from, to, this);
+    }
+    
+    public void movePiece(String from, String to) {
+        V2Piece piece = getPiece(from);
+        setPiece(from, null);
+        firePieceMoved(from, to);
+    }
+    
+    public static void main (String[] args){
+        V2Board board = new V2Board();
+        V2PieceColor pieceColor=V2PieceColor.WHITE;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        do{
+            System.out.println(pieceColor+" 's turn: ");
+            String line=null;
+            try{
+                line=reader.readLine();
+            }catch(IOException e){
+                break;
+            }
+            String[] fromTo=line.split("-");
+            if(fromTo.length!=2){
+                System.out.println("Illegal syntax ...");
+                continue;
+            }
+            String from=formTo[0].trim(), to=fromTo[1].trim();
+            if(!board.isLegalMove(pieceColor, from, to)){
+                System.out.println("Liiegal move!");
+                continue;
+            }
+            board.movePiece(from, to);
+            pieceColor=pieceColor.getOtherColor();
+            for(PieceColor kingColor: V2PieceColor.values()){
+                if(board.isCheck(kingColor)){
+                    System.out.println("the "+kingColor+" king is check!");
+                }
+            }
+        } while (board.findKing(V2PieceColor.WHITE) != null
+                & board.findKing(V2PieceColor.BLACK) != null);
     }
 }
