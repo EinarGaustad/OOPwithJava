@@ -10,4 +10,4 @@
      ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░
 
 
-Chess and V2 are not ready to play
+Chess and V2 are not finished ... 

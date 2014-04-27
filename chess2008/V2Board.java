@@ -52,27 +52,27 @@ public class V2Board {
             }
         }
         for (int i = 0; i < 8; i++) {
-            pieces[1][i] = (V2Piece) new Pawn("WHITE");
-            pieces[6][i] = (V2Piece) new Pawn("BLACK");
+            pieces[1][i] = (V2Piece) new V2Pawn(V2PieceColor.WHITE);
+            pieces[6][i] = (V2Piece) new V2Pawn(V2PieceColor.BLACK);
         }
         
-        pieces[0][0] = (V2Piece) new Rook("WHITE");
-        pieces[0][1] = (V2Piece) new Knight("WHITE");
-        pieces[0][2] = (V2Piece) new Bishop("WHITE");
-        pieces[0][3] = (V2Piece) new Queen("WHITE");
-        pieces[0][4] = (V2Piece) new King("WHITE");
-        pieces[0][5] = (V2Piece) new Bishop("WHITE");
-        pieces[0][6] = (V2Piece) new Knight("WHITE");
-        pieces[0][7] = (V2Piece) new Rook("WHITE");
+        pieces[0][0] = (V2Piece) new V2Rook(V2PieceColor.WHITE);
+        pieces[0][1] = (V2Piece) new V2Knight(V2PieceColor.WHITE);
+        pieces[0][2] = (V2Piece) new V2Bishop(V2PieceColor.WHITE);
+        pieces[0][3] = (V2Piece) new V2Queen(V2PieceColor.WHITE);
+        pieces[0][4] = (V2Piece) new V2King(V2PieceColor.WHITE);
+        pieces[0][5] = (V2Piece) new V2Bishop(V2PieceColor.WHITE);
+        pieces[0][6] = (V2Piece) new V2Knight(V2PieceColor.WHITE);
+        pieces[0][7] = (V2Piece) new V2Rook(V2PieceColor.WHITE);
         
-        pieces[7][0] = (V2Piece) new Rook("BLACK");
-        pieces[7][1] = (V2Piece) new Knight("BLACK");
-        pieces[7][2] = (V2Piece) new Bishop("BLACK");
-        pieces[7][3] = (V2Piece) new Queen("BLACK");
-        pieces[7][4] = (V2Piece) new King("BLACK");
-        pieces[7][5] = (V2Piece) new Bishop("BLACK");
-        pieces[7][6] = (V2Piece) new Knight("BLACK");
-        pieces[7][7] = (V2Piece) new Rook("BLACK");
+        pieces[7][0] = (V2Piece) new V2Rook(V2PieceColor.BLACK);
+        pieces[7][1] = (V2Piece) new V2Knight(V2PieceColor.BLACK);
+        pieces[7][2] = (V2Piece) new V2Bishop(V2PieceColor.BLACK);
+        pieces[7][3] = (V2Piece) new V2Queen(V2PieceColor.BLACK);
+        pieces[7][4] = (V2Piece) new V2King(V2PieceColor.BLACK);
+        pieces[7][5] = (V2Piece) new V2Bishop(V2PieceColor.BLACK);
+        pieces[7][6] = (V2Piece) new V2Knight(V2PieceColor.BLACK);
+        pieces[7][7] = (V2Piece) new V2Rook(V2PieceColor.BLACK);
     }
     
     private static int getColumnIndex(String position) {
@@ -260,7 +260,7 @@ public class V2Board {
         firePieceMoved(from, to);
     }
     
-    private String findKing(V2PieceColor pieceColor) {
+    public String findKing(V2PieceColor pieceColor) {
         for (String position : V2BoardIterator.computePositions()) {
             V2Piece piece = getPiece(position);
             if (piece instanceof King & piece.getPieceColor() == pieceColor) {
@@ -268,5 +268,76 @@ public class V2Board {
             }
         }
         return null;
+    }
+    
+    public String getPiecePosition(V2Piece piece) {
+        for (String pos : V2BoardIterator.computePositions()) {
+            return getPiece(pos) == piece ? pos : null;
+        }
+        return null;
+    }
+    
+    public boolean checkmate() {
+        if (findKing(V2PieceColor.BLACK) == null || V2PieceColor.WHITE == null) {
+            return true;
+        }
+        return false;
+    }
+    // ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░
+    // 8 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ 8
+    // 7 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ 7
+    // 6 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 6
+    // 5 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 5
+    // 4 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 4
+    // 3 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 3
+    // 2 ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ 2
+    // 1 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ 1
+    // ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░
+    public String toString() {
+        String s = " ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░";
+        for (int i = 8; i > 0; i--) {
+            s += "\n";
+            s += " " + i + " ";
+            for (int j = 0; j < 8; j++) {
+                String pos = "" + (char) ((char) j + 'a') + "" + i;
+                if (getPiece(pos) == null) {
+                    s += "▓ ";
+                } else {
+                    V2Piece piece = getPiece(pos);
+                    if (piece.getPieceColor() == V2PieceColor.BLACK) {
+                        if (piece instanceof V2King) {
+                            s += "♚ ";
+                        } else if (piece instanceof V2Queen) {
+                            s += "♛ ";
+                        } else if (piece instanceof V2Bishop) {
+                            s += "♝ ";
+                        } else if (piece instanceof V2Knight) {
+                            s += "♞ ";
+                        } else if (piece instanceof V2Rook) {
+                            s += "♜ ";
+                        } else if (piece instanceof V2Pawn) {
+                            s += "♟ ";
+                        }
+                    } else if (piece.getPieceColor() == V2PieceColor.WHITE) {
+                        if (piece instanceof V2King) {
+                            s += "♔ ";
+                        } else if (piece instanceof V2Queen) {
+                            s += "♕ ";
+                        } else if (piece instanceof V2Bishop) {
+                            s += "♗ ";
+                        } else if (piece instanceof V2Knight) {
+                            s += "♘ ";
+                        } else if (piece instanceof V2Rook) {
+                            s += "♖ ";
+                        } else if (piece instanceof V2Pawn) {
+                            s += "♙ ";
+                        }
+                    }
+                }
+            }
+            s += "" + i;
+        }
+        s += "\n" + " ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░";
+        return s;
     }
 }
