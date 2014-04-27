@@ -3,6 +3,8 @@ package chess2008;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 
@@ -23,7 +25,55 @@ import java.io.InputStreamReader;
  */
 public class V2Board {
     
-    private V2Piece[][] pieces;
+    private V2Piece[][]    pieces;
+    public V2BoardIterator iterator;
+    
+    public V2Board() {
+        iterator = new V2BoardIterator();
+        init();
+    }
+    
+    // ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░
+    // 8 ♜ ♞ ♝ ♛ ♚ ♝ ♞ ♜ 8
+    // 7 ♟ ♟ ♟ ♟ ♟ ♟ ♟ ♟ 7
+    // 6 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 6
+    // 5 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 5
+    // 4 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 4
+    // 3 ▓ ▓ ▓ ▓ ▓ ▓ ▓ ▓ 3
+    // 2 ♙ ♙ ♙ ♙ ♙ ♙ ♙ ♙ 2
+    // 1 ♖ ♘ ♗ ♕ ♔ ♗ ♘ ♖ 1
+    // ░ ⓐ ⓑ ⓒ ⓓ ⓔ ⓕ ⓖ ⓗ ░
+    private void init() {
+        pieces = new V2Piece[8][8];
+        // set row 3,4,5,6 to null
+        for (int i = 2; i < 6; i++) {
+            for (int j = 0; j < 8; j++) {
+                pieces[i][j] = null;
+            }
+        }
+        for (int i = 0; i < 8; i++) {
+            pieces[1][i] = (V2Piece) new Pawn("WHITE");
+            pieces[6][i] = (V2Piece) new Pawn("BLACK");
+        }
+        
+        pieces[0][0] = (V2Piece) new Rook("WHITE");
+        pieces[0][1] = (V2Piece) new Knight("WHITE");
+        pieces[0][2] = (V2Piece) new Bishop("WHITE");
+        pieces[0][3] = (V2Piece) new Queen("WHITE");
+        pieces[0][4] = (V2Piece) new King("WHITE");
+        pieces[0][5] = (V2Piece) new Bishop("WHITE");
+        pieces[0][6] = (V2Piece) new Knight("WHITE");
+        pieces[0][7] = (V2Piece) new Rook("WHITE");
+        
+        pieces[7][0] = (V2Piece) new Rook("BLACK");
+        pieces[7][1] = (V2Piece) new Knight("BLACK");
+        pieces[7][2] = (V2Piece) new Bishop("BLACK");
+        pieces[7][3] = (V2Piece) new Queen("BLACK");
+        pieces[7][4] = (V2Piece) new King("BLACK");
+        pieces[7][5] = (V2Piece) new Bishop("BLACK");
+        pieces[7][6] = (V2Piece) new Knight("BLACK");
+        pieces[7][7] = (V2Piece) new Rook("BLACK");
+    }
     
     private static int getColumnIndex(String position) {
         return position.charAt(0) - 'a';
@@ -39,10 +89,6 @@ public class V2Board {
     
     public V2Piece getPiece(int column, int row) {
         return pieces[row][column];
-    }
-    
-    public void setPiece(String position, V2Piece piece) {
-        pieces[getRowIndex(position)][getColumnIndex(position)] = piece;
     }
     
     /**
@@ -124,42 +170,103 @@ public class V2Board {
                 & piece.canMove(from, to, this);
     }
     
-    public void movePiece(String from, String to) {
-        V2Piece piece = getPiece(from);
-        setPiece(from, null);
-        firePieceMoved(from, to);
-    }
-    
-    public static void main (String[] args){
+    public static void main(String[] args) {
         V2Board board = new V2Board();
-        V2PieceColor pieceColor=V2PieceColor.WHITE;
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        do{
-            System.out.println(pieceColor+" 's turn: ");
-            String line=null;
-            try{
-                line=reader.readLine();
-            }catch(IOException e){
+        V2PieceColor pieceColor = V2PieceColor.WHITE;
+        BufferedReader reader = new BufferedReader(new InputStreamReader(
+                System.in));
+        do {
+            System.out.println(pieceColor + " 's turn: ");
+            String line = null;
+            try {
+                line = reader.readLine();
+            } catch (IOException e) {
                 break;
             }
-            String[] fromTo=line.split("-");
-            if(fromTo.length!=2){
+            String[] fromTo = line.split("-");
+            if (fromTo.length != 2) {
                 System.out.println("Illegal syntax ...");
                 continue;
             }
-            String from=formTo[0].trim(), to=fromTo[1].trim();
-            if(!board.isLegalMove(pieceColor, from, to)){
+            String from = fromTo[0].trim(), to = fromTo[1].trim();
+            if (!board.isLegalMove(pieceColor, from, to)) {
                 System.out.println("Liiegal move!");
                 continue;
             }
             board.movePiece(from, to);
-            pieceColor=pieceColor.getOtherColor();
-            for(PieceColor kingColor: V2PieceColor.values()){
-                if(board.isCheck(kingColor)){
-                    System.out.println("the "+kingColor+" king is check!");
+            pieceColor = pieceColor.getOtherColor();
+            for (V2PieceColor kingColor : V2PieceColor.values()) {
+                if (board.isCheck(kingColor)) {
+                    System.out.println("the " + kingColor + " king is check!");
                 }
             }
         } while (board.findKing(V2PieceColor.WHITE) != null
                 & board.findKing(V2PieceColor.BLACK) != null);
+    }
+    
+    public boolean isCheck(V2PieceColor color) {
+        String posK = findKing(color);
+        for (String pos : V2BoardIterator.computePositions()) {
+            if (getPiece(pos) != null
+                    & getPiece(pos).getPieceColor() == color.getOtherColor()
+                    & getPiece(pos).canTake(pos, posK, this)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean validateBoardPosition(String pos) {
+        for (String position : V2BoardIterator.computePositions()) {
+            if (position == pos) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    private List<V2BoardListener> listeners = new ArrayList<V2BoardListener>();
+    
+    public void addBoardListener(V2BoardListener listener) {
+        listeners.add(listener);
+    }
+    
+    public void removeBoardListener(V2BoardListener listener) {
+        listeners.remove(listener);
+    }
+    
+    public void fireSquareChanged(String position) {
+        for (V2BoardListener listener : listeners) {
+            listener.squareChanged(position, this);
+        }
+    }
+    
+    public void setPiece(String position, V2Piece piece) {
+        validateBoardPosition(position);
+        pieces[getRowIndex(position)][getColumnIndex(position)] = piece;
+        fireSquareChanged(position);
+    }
+    
+    private void firePieceMoved(String from, String to) {
+        for (V2BoardListener listener : listeners) {
+            listener.pieceMoved(from, to, this);
+        }
+    }
+    
+    public void movePiece(String from, String to) {
+        V2Piece piece = getPiece(from);
+        setPiece(from, null);
+        setPiece(to, piece);
+        firePieceMoved(from, to);
+    }
+    
+    private String findKing(V2PieceColor pieceColor) {
+        for (String position : V2BoardIterator.computePositions()) {
+            V2Piece piece = getPiece(position);
+            if (piece instanceof King & piece.getPieceColor() == pieceColor) {
+                return position;
+            }
+        }
+        return null;
     }
 }
