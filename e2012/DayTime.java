@@ -48,6 +48,14 @@ public class DayTime {
         return hours + ":" + minutes;
     }
     
+    public int gethours() {
+        return hours;
+    }
+    
+    public int getminutes() {
+        return minutes;
+    }
+    
     // public void changeTime(int hours, int minutes) { //wrong
     // this.hours = hours;//once it is final the values can not be changed!
     // this.minutes = minutes;
