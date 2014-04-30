@@ -8,13 +8,17 @@ public class TimeSlot {
     public TimeSlot(String description, int hours, int minutes, int duration) {
         this.description = description;
         this.hours = hours;
+        this.minutes = minutes;
         this.duration = duration;
         this.endHours = hours + (minutes + duration) / 60;
-        this.endMinutes = minutes % 60;
+        this.endMinutes = (minutes + duration) % 60;
     }
     
     public String timeFormat() {
-        return hours + ":" + minutes + "-" + endHours + ":" + endMinutes;
+        return (hours < 10 ? ("0" + hours) : hours) + ":"
+                + (minutes < 10 ? ("0" + minutes) : minutes) + "-"
+                + (endHours < 10 ? ("0" + endHours) : endHours) + ":"
+                + (endMinutes < 10 ? ("0" + endMinutes) : endMinutes);
     }
     
     public String toString() {

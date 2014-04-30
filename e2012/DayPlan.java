@@ -4,18 +4,26 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
 public class DayPlan {
     
-    private List<TimeSlot> dayplan;
+    protected List<TimeSlot> dayplan;
     
     public DayPlan() {
         dayplan = new ArrayList<TimeSlot>();
     }
     
+    public void addTimeSlot(TimeSlot ts) {
+        dayplan.add(ts);
+    }
     public void addTimeSlot(TimeSlot ts1, TimeSlot ts2) {
         dayplan.add(ts1);
         dayplan.add(ts2);
+    }
+    
+    public void removeTimeSlot(TimeSlot ts) {
+        if (dayplan.contains(ts)) {
+            dayplan.remove(ts);
+        }
     }
     
     public void removeTimeSlot(TimeSlot ts1, TimeSlot ts2) {
@@ -35,6 +43,7 @@ public class DayPlan {
      */
     public TimeSlot getTimeSlotAt(int hours, int minutes) {
         ArrayList<TimeSlot> ts = new ArrayList<TimeSlot>();
+
         for (TimeSlot timeSlot : dayplan) {
             if (timeSlot.contains(hours, minutes)) {
                 ts.add(timeSlot);
@@ -43,10 +52,10 @@ public class DayPlan {
         if (ts.size() == 0) {
             return null;
         }
-        TimeSlot earlyPlan = new TimeSlot("earliest pan", 23, 58, 1);
+        TimeSlot earlyPlan = ts.get(0);
         for (TimeSlot timeSlot : ts) {
             earlyPlan = timeSlot.sorting(timeSlot, earlyPlan);
-        } 
+        }
         return earlyPlan;
     }
     
@@ -126,4 +135,5 @@ public class DayPlan {
         }
         return sort;
     }
+
 }

@@ -48,7 +48,7 @@ public class DayTime {
         return hours + ":" + minutes;
     }
     
-    public int gethours() {
+    public int gethours() {//not needed hours and minutes are public 
         return hours;
     }
     
