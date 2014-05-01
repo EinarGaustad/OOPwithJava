@@ -25,6 +25,10 @@ public class TimeSlot {
         return description + "@" + timeFormat();
     }
     
+    public String getDescription() {
+        return description;
+    }
+    
     public DayTime getStartTime() {
         return new DayTime(hours, minutes);
     }

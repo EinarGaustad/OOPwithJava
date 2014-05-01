@@ -12,6 +12,14 @@ public class DayPlan {
         dayplan = new ArrayList<TimeSlot>();
     }
     
+    public DayPlan(List<TimeSlot> dayplan) {
+        this.dayplan = dayplan;
+    }
+    
+    public List<TimeSlot> getDayplan() {
+        return dayplan;
+    }
+    
     public void addTimeSlot(TimeSlot ts) {
         dayplan.add(ts);
     }

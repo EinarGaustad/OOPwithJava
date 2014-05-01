@@ -1,0 +1,4 @@
+TDT4100 Lecture 10 15 105
+test1 8 1 8
+test2 0 0 5
+Coffee break 12 30 60

@@ -1,6 +1,7 @@
 package e2012;
 
 
+
 public class Test {
     
     public static void main(String[] args) {
@@ -11,6 +12,15 @@ public class Test {
         System.out.println(tuesday.getTimeSlotAt(8, 5));
         System.out.println(tuesday.getTimeSlotAt(0, 3));
         tuesday.addTimeSlot(new TimeSlot("Coffee break", 12, 30, 60));
+        System.out.println("--Write a file--");
+        //        WriteFile wf = new WriteFile(tuesday.getDayplan(), "save");
+        //        System.out.println(wf.resultMessage);
+        
+        System.out.println("--Read a file--");
+        ReadFile rf = new ReadFile("save");
+        System.out.println(rf.resultMessage);
+        System.out.println(rf.getDayplan().toString());
+        System.out.println("--input Stream--");
         System.out.println("----");
 
         DayPlan repeatingTuesday = new TDT4100DayPlan();
