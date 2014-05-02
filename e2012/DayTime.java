@@ -23,6 +23,17 @@ public class DayTime {
      * get-metoder får implementasjonsklassen større frihet til å endre
      * interne detaljer, uten at annen kode blir påvirket.
      * 
+     * encapsulation :
+     * 1. a language mechanism for restricting access to some of the
+     * object's components.
+     * 2. a language construct that facilitates the bundling of data with the
+     * methods (functions) operating on that data.
+     * Encapsulation is used to hide the values or state of a structured data
+     * object inside a class, preventing unauthorized parties' direct access to
+     * them. Publicly accessible methods are generally provided in the class (so
+     * called getters and setters) to access the values, and other client
+     * classes call these methods to retrieve and modify the values within the
+     * object.
      * 
      */
     
@@ -35,7 +46,20 @@ public class DayTime {
     //    no modifier |  ✔    |    ✔    |    ✘     |   ✘
     //    ————————————+———————+—————————+——————————+———————
     //    private     |  ✔    |    ✘    |    ✘     |   ✘
-
+    /**
+     * object-oriented approach is in reality a logical extension of good design
+     * practices that go back to the very beginning of computer programming.
+     * Object-orientation is simply the logical extension of older techniques
+     * such as structured programming and abstract data types.
+     * An object is an abstract data type with the addition of polymorphism and
+     * inheritance.
+     * 
+     * 4 major principles that make a language object-oriented:
+     * 1. Encapsulation
+     * 2. Data Abstraction
+     * 3. Polymorphism
+     * 4. Inheritence
+     */
     public final int hours, minutes;
     private int      value;
     
@@ -168,9 +192,9 @@ public class DayTime {
     }
     
     //
-    public class Folk extends ArrayList<Folk> {
-        
-    }
+    //    public class Folk extends ArrayList<Folk> {
+    //        
+    //    }
     //- Når en arver så kan en ikke kun arve de metodene en ønsker, 
     //  men får alle med på kjøpet. Da vil en være nødt til å redefinere 
     //  alle en ikke trenger/ønsker at skal være tilgjengelig.

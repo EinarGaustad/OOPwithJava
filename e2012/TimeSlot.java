@@ -1,6 +1,6 @@
 package e2012;
 
-public class TimeSlot {
+public class TimeSlot implements Comparable<TimeSlot> {
     
     private String description;
     private int    hours, minutes, duration, endHours, endMinutes;
@@ -82,6 +82,15 @@ public class TimeSlot {
             return ts1.getMinutes() > ts2.getMinutes() ? ts1 : ts2;
         }
         return ts1.getHours() > ts2.getHours() ? ts1 : ts2;
+    }
+
+    @Override
+    public int compareTo(TimeSlot o) {
+        int diff = o.getHours() - getHours();
+        if (diff == 0) {
+            diff = o.getMinutes() - getMinutes();
+        }
+        return diff;
     }
 
     //    Differences in boolean operators: & vs && and | vs ||
