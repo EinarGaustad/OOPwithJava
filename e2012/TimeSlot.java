@@ -1,5 +1,6 @@
 package e2012;
 
+
 public class TimeSlot implements Comparable<TimeSlot> {
     
     private String description;
@@ -83,7 +84,14 @@ public class TimeSlot implements Comparable<TimeSlot> {
         }
         return ts1.getHours() > ts2.getHours() ? ts1 : ts2;
     }
-
+    
+    /*
+     * implement comparable<> so we can use Collections.sort(tuesday.dayplan) in
+     * test;
+     * (non-Javadoc)
+     * 
+     * @see java.lang.Comparable#compareTo(java.lang.Object)
+     */
     @Override
     public int compareTo(TimeSlot o) {
         int diff = o.getHours() - getHours();
