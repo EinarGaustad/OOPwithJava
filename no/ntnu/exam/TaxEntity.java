@@ -23,25 +23,173 @@ public abstract class TaxEntity {
     //    boolean                   ---  false
     final private int idnr;      //final can not change after initialized 
     private double    taxpercent;
-    private long      income, deduction, debt;
+    private long      income, deduction, debt, assets;
     private String    name;
     
-    public TaxEntity(int idnr, String name, double taxpercent, long income,
-            long deduction, long debt, long assets) {
-        this.idnr = idnr;
-        this.taxpercent = taxpercent;
-        this.income = income;
-        this.debt = debt;
-        this.name = name;
-
+    //    protected TaxEntity(int idnr, String name, double taxpercent, long income,
+    //            long deduction, long debt, long assets) {
+    //        this.idnr = idnr;
+    //        this.taxpercent = taxpercent;//check value?
+    //        this.income = income;
+    //        this.debt = debt;
+    //        this.name = name;
+    //    }
+    
+    protected TaxEntity(int idnr, String name, double taxpercent) {
+        if (checkId(idnr)) {//bruker enkle hjelpemetoder for å sjekke id
+            this.idnr = idnr;
+        } else {
+            throw new IllegalArgumentException("Invalid ID: " + idnr);
+        }
+        setName(name);
+        setPercent(taxpercent);
     }
     
+    /**
+     * Vi trenger en «protected constructor» for å vise at ingen andre enn
+     * sub-klassene skal kunne opprette instanser av typen TaxEntity.
+     * 
+     * (Andre klasser i package no.ntnu.eksamen kunne også brukt
+     * protected-konstruktøren, om ikke klassen hadde vært abstract).
+     * 
+     * 
+     * Alle kall til denne konstruktøren fra en sub-klasse (som TaxPerson eller
+     * TaxFirm ) må skje i første linje i konstruktøren til sub-klassen.
+     * Syntaksen er:
+     * super(id, name, percent);
+     */
+    
+    /**
+     * 
+     * @param name
+     * 
+     *            Setters bør være public slik at de kan benyttes fra
+     *            (potensielt andre) TaxProgram etc.(Bonus for riktig bruk av
+     *            <this>
+     * 
+     *            Bør kaste IllegalArgumentException eller annen
+     *            RuntimeException hvis feil oppdages.
+     * 
+     */
+    public void setName(String name) {
+        if (checkNavn(name)) {
+            this.name = name;
+        } else {
+            throw new IllegalArgumentException("Invalid name: " + name);
+        }
+    }
+    
+    /**
+     * 
+     * @param percent
+     *            set tax percent
+     */
+    public void setPercent(double percent) {
+        if (checkPercent(percent)) {
+            this.taxpercent = percent;
+        } else {
+            throw new IllegalArgumentException("Invalid tax percentage: "
+                    + percent);
+        }
+    }
+    
+    /**
+     * 
+     * Trenger bare get-metode for idnr, siden det aldri skal kunne endres.
+     * Trenger get- og set-metoder for navn, skatteprosent, inntekt, formue,
+     * fradrag og gjeld.
+     * Alle disse tilgangsmetodene bør være public slik at de kan benyttes i
+     * (potensielt andre) TaxProgram.
+     */
+    public int getIdnr() {
+        return this.idnr;
+    }
+    
+    public String getName() {
+        return this.name;
+    }
+    
+    public double getTaxpercent() {
+        return this.taxpercent;
+    }
+    
+    public void setIncome(long income) {
+        if (checkPositive(income)) {
+            this.income = income;
+        } else {
+            throw new IllegalArgumentException("Error! Negativ income:"
+                    + income);
+        }
+    }
+    public long getIncome() {
+        return this.income;
+    }
+    
+    public void setDebt(long debt) {
+        if (checkPositive(debt)) {
+            this.debt = debt;
+        } else {
+            throw new IllegalArgumentException("Negativ debt: " + debt);
+        }
+    }
+
+    public long getDebt() {
+        return this.debt;
+    }
+    
+    public void setDeduction(long deduction) {
+        if (checkPositive(deduction)) {
+            this.deduction = deduction;
+        } else {
+            throw new IllegalArgumentException("Invalid value: " + deduction);
+        }
+    }
+    public long getDeduction() {
+        return this.deduction;
+    }
+    
+    public void setAssets(long assets) {
+        if (checkPositive(assets)) {
+            this.assets = assets;
+        } else {
+            throw new IllegalArgumentException("Invalid value: " + assets);
+        }
+    }
+    
+    public long getAssets() {
+        return this.assets;
+    }
+    //-Beregne skatten for alle landets innbyggere etter følgende formler: 
+    //    Skatt = Inntektsskatt + Formueskatt
+    //    Inntektsskatt = (inntekt – fradrag) * skatteprosent % 
+    //    Formueskatt = (formue – gjeld) * 1 %
+    //    Hvis gjelden er større enn formuen blir det ingen formueskatt det året.
+    //    (NB: Tilsvarende for inntekt/fradag for å unngå negativ skatt!!)
+    
+    public long getTax() {
+        long incomeTax = (long) ((this.income - this.deduction) * taxpercent / 100);
+        long assetsTax = (this.assets - this.debt) < 0 ? 0
+                : (this.assets - this.debt) * 1 / 100;
+        return incomeTax + assetsTax;
+    }
+    
+    //    public long getSkatt() {
+    //        long tax = 0;
+    //        if (assets > debt) {
+    //            tax += (assets - debt) * YearRegister.wealthTaxPercent / 100;
+    //        }
+    //        if (income > deduction) {
+    //            tax += (income - deduction) * taxpercent / 100;
+    //        }
+    //        return tax;
+    //    }
+
     /**
      * 
      * @return given value is bigger or equal to 0
      */
     public boolean checkPositive(double value) {
-        return value > 0.0 ? true : false;
+        return value > 0.0;// ? true : false;
     }
     
     /**
@@ -73,17 +221,17 @@ public abstract class TaxEntity {
     
     /**
      * 
-     * @param navn
+     * @param name
      * @return
      * 
      *         Man kan også argumentere for at checkName må behandles på en
      *         lignende måte som checkId (hvis man vil), men det står ikke noe
      *         om det i oppgaven.
      */
-    public boolean checkNavn(String navn) {
+    public boolean checkNavn(String name) {
         int charCount = 0;
-        String lc = navn.toLowerCase();
-        for (int i = 0; i < navn.length(); i++) {
+        String lc = name.toLowerCase();
+        for (int i = 0; i < name.length(); i++) {
             char c = lc.charAt(i);
             if (c >= 'a' && c <= 'z' || c == 'æ' || c == 'ø' || c == 'å') {
                 charCount++;
