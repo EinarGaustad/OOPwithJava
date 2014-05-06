@@ -21,7 +21,7 @@ public abstract class TaxEntity {
     //    char                      ---  '\u0000'
     //    String (or any object)    ---  null
     //    boolean                   ---  false
-    final private int idnr;      //final can not change after initialized 
+    final private String idnr;      //final can not change after initialized 
     private double    taxpercent;
     private long      income, deduction, debt, assets;
     private String    name;
@@ -35,7 +35,7 @@ public abstract class TaxEntity {
     //        this.name = name;
     //    }
     
-    protected TaxEntity(int idnr, String name, double taxpercent) {
+    protected TaxEntity(String idnr, String name, double taxpercent) {
         if (checkId(idnr)) {//bruker enkle hjelpemetoder for å sjekke id
             this.idnr = idnr;
         } else {
@@ -101,7 +101,7 @@ public abstract class TaxEntity {
      * Alle disse tilgangsmetodene bør være public slik at de kan benyttes i
      * (potensielt andre) TaxProgram.
      */
-    public int getIdnr() {
+    public String getIdnr() {
         return this.idnr;
     }
     
@@ -255,7 +255,7 @@ public abstract class TaxEntity {
      *         (siden den er abstract) slik at den kan Overrides i sub-klassene
      *         TaxPerson eller TaxFirm.
      */
-    protected abstract boolean checkId(int idnr);
+    protected abstract boolean checkId(String idnr);
 
     public String toString() {
         return "idnr: " + idnr + " Name: " + name + "\n" + " Tax Percent: "
