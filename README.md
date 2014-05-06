@@ -9,9 +9,10 @@ Information About TDT4100: http://junjunguo.com/TDT4100/
 Javadoc for exercises: http://junjunguo.com/TDT4100/javadoc
 
 Four Principles of object oriented programming:
-    - Inheritance,
-    - Abstraction,
-    - Polymorphism,
-    - Encapsulation.
+
+    * Inheritance,
+    * Abstraction,
+    * Polymorphism,
+    * Encapsulation.
 
 
