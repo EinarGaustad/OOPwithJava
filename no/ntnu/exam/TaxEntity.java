@@ -24,7 +24,7 @@ public abstract class TaxEntity {
     final private String idnr;      //final can not change after initialized 
     private double    taxpercent;
     private long      income, deduction, debt, assets;
-    private String    name;
+    private String       name, commune;
     
     //    protected TaxEntity(int idnr, String name, double taxpercent, long income,
     //            long deduction, long debt, long assets) {
@@ -183,7 +183,13 @@ public abstract class TaxEntity {
     //        }
     //        return tax;
     //    }
-
+    public void setCommune(String commune) {
+        this.commune = commune;
+    }
+    
+    public String getCommune() {
+        return commune;
+    }
     /**
      * 
      * @return given value is bigger or equal to 0
