@@ -7,7 +7,7 @@ En collection er et objekt som representerer en gruppe objekter. Dette brukes my
 Basen til rammeverket er fjorten grensesnitt som representerer ulike typer collections som sets, lists og maps.
 På Oracle sine sider finner man denne tabellen, som oppsummerer implementasjonene av de ulike grensesnittene ganske oversiktelig:
 
-![collection Overview](junjunguo.github.io/image/java/collectionsoverview.jpg)
+![collection Overview](http://junjunguo.github.io/image/java/collectionsoverview.jpg)
 
 *Kort om grensesnittene
 1. Set
@@ -31,10 +31,10 @@ Maps er ikke en ordnet collection, men ved hjelp av nøkkelen kan man gjøre opp
 
 Collection detail:
 
-![collection detail](junjunguo.github.io/image/java/Collections-detail.png)
+![collection detail](http://junjunguo.github.io/image/java/Collections-detail.png)
 
 
 UML collection implementation:
 
 
-![collection detail](junjunguo.github.io/image/java/collection_implementation.jpg)
+![collection detail](http://junjunguo.github.io/image/java/collection_implementation.jpg)
