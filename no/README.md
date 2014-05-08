@@ -9,7 +9,8 @@ På Oracle sine sider finner man denne tabellen, som oppsummerer implementasjone
 
 ![collection Overview](http://junjunguo.github.io/image/java/collectionsoverview.jpg)
 
-*Kort om grensesnittene
+####Kort om grensesnittene
+
 1. Set
 Et set er en collection som ikke kan inneholde duplikate elementer. Grensesnittet representerer den matematiske definisjonen av en mengde, og brukes for eksempel til å holde kortene som utgjør en pokerhånd eller prosessene som kjører på en datamaskin. Man kan utføre en rekke mengde-operasjoner på et set. Disse og mer om set-grensesnittet finner du her.
 
