@@ -1,18 +1,23 @@
 TDT4100
 =======
 
-TDT4100 - objektorientert programmering med Java
+ObjektOrientert Programmering med Java
 -------
 
-Information About TDT4100: http://junjunguo.com/TDT4100/
+Course Information: [TDT4100][1]
 
-Javadoc for exercises: http://junjunguo.com/TDT4100/javadoc
+[Javadoc][2] for exercises: [TDT4100 Javadoc][2]
 
-Four Principles of object oriented programming:
+> Four Principles of object oriented programming:
 
-    * Inheritance,
-    * Abstraction,
-    * Polymorphism,
-    * Encapsulation.
+>     Inheritance
+>     Abstraction
+>     Polymorphism
+>     Encapsulation
+
+[**Java collections** overview][3]
 
 
+  [1]: http://junjunguo.com/TDT4100
+  [2]: http://junjunguo.com/TDT4100/javadoc
+  [3]: https://github.com/junjunguo/TDT4100/blob/master/no/README.md
