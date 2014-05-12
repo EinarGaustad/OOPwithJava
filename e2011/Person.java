@@ -96,4 +96,17 @@ public class Person {
         vs += tabelpnr[9] * 2;
         return 11 - (vs % 11);
     }
+    
+    /**
+     * En checked exception er en subklasse av Exception som ikke samtidig er en
+     * subklasse av RuntimeException. En slik Exception må deklareres vha.
+     * throws og den kallende metoden må enten håndtere unntaket med try/catch
+     * eller deklarere det med throws.
+     **/
+    public void setDateOfBirth(Date dateOfBirth) throws Exception { 
+        if (personnumber != null) {
+            throw new Exception(
+                    "Cannot change date of birth after PID has been set");
+        }
+        this.birth = dateOfBirth; }
 }
