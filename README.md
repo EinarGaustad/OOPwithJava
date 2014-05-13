@@ -16,8 +16,12 @@ Course Information: [TDT4100][1]
 >     Polymorphism
 >     Encapsulation
 
-[**Java collections** overview][3]
 
+###ReadMe:
+
+1. [**Java collections** overview][3]
+
+2. [**Java Exception** checked & unchecked exceptions](e2011/README.md)
 
   [1]: http://junjunguo.com/TDT4100
   [2]: http://junjunguo.com/TDT4100/javadoc

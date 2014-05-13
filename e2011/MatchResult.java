@@ -1,0 +1,51 @@
+package e2011;
+
+
+public class MatchResult {
+    
+    private String homeTeam, awayTeam;
+    private int    homeGoals, awayGoals;
+    public MatchResult(String homeTeam, String awayTeam) {
+        this.homeTeam = homeTeam;
+        this.awayTeam = awayTeam;
+    }
+    
+    public boolean isParticipant(String participant) {
+        if (participant == homeTeam || participant == awayTeam) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean isDraw() {
+        if (homeGoals == awayGoals) {
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean isWinner(String participant) {
+        if(!isParticipant(participant)){
+            throw new IllegalArgumentException(participant
+                    + " is not participant.");
+        }
+        return participant == winnerIs();
+    }
+    
+    private String winnerIs() {
+        if (homeGoals > awayGoals) {
+            return this.homeTeam;
+        }
+        if (awayGoals > homeGoals) {
+            return this.awayTeam;
+        }
+        return null;
+    }
+    
+    public int getGoals(String participant) {
+        if (isParticipant(participant)) {
+            return participant == homeTeam ? homeGoals : awayGoals;
+        }
+        return 0;
+    }
+}
