@@ -10,6 +10,13 @@ public class MatchResult {
         this.awayTeam = awayTeam;
     }
     
+    public String getHomeTeam() {
+        return homeTeam;
+    }
+    
+    public String getAwayTeam() {
+        return awayTeam;
+    }
     public boolean isParticipant(String participant) {
         if (participant == homeTeam || participant == awayTeam) {
             return true;
@@ -17,6 +24,10 @@ public class MatchResult {
         return false;
     }
     
+    public void setResult(int homeGoals, int awayGoals) {
+        this.homeGoals = homeGoals;
+        this.awayGoals = awayGoals;
+    }
     public boolean isDraw() {
         if (homeGoals == awayGoals) {
             return true;
