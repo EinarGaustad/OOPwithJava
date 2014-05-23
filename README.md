@@ -23,6 +23,8 @@ Course Information: [TDT4100][1]
 
 2. [**Java Exception** checked & unchecked exceptions](e2011/README.md)
 
+3. [**Abstract** class & **Interface** type](e2011/interfaceVSabstrace.md)
+
   [1]: http://junjunguo.com/TDT4100
   [2]: http://junjunguo.com/TDT4100/javadoc
   [3]: https://github.com/junjunguo/TDT4100/blob/master/no/README.md

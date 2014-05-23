@@ -29,7 +29,7 @@ public class LeagueTable {
         if (!teamtable.contains(homeTeam) || !teamtable.contains(awayTeam)) {
             throw new IllegalArgumentException("Illegal teams!");
         }
-        matchtable.add(new MatchResult(homeTeam, awayTeam));
+        matchtable.add(new TennisResult(homeTeam, awayTeam));
     }
     
     /**
@@ -84,7 +84,7 @@ public class LeagueTable {
     private void initPointTable() {
         pointtable = new ArrayList<LeagueTableRow>();
         for (String s : teamtable) {
-            pointtable.add(new LeagueTableRow(this, s));
+            pointtable.add(new FootballLeagueTable(this, s));
         }
     }
 }

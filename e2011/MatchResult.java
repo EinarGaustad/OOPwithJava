@@ -1,7 +1,7 @@
 package e2011;
 
 
-public class MatchResult {
+public abstract class MatchResult {
     
     private String homeTeam, awayTeam;
     private int    homeGoals, awayGoals;
@@ -35,15 +35,9 @@ public class MatchResult {
         return false;
     }
     
-    public boolean isWinner(String participant) {
-        if(!isParticipant(participant)){
-            throw new IllegalArgumentException(participant
-                    + " is not participant.");
-        }
-        return participant == winnerIs();
-    }
+    public abstract boolean isWinner(String participant);
     
-    private String winnerIs() {
+    protected String winnerIs() {
         if (homeGoals > awayGoals) {
             return this.homeTeam;
         }
