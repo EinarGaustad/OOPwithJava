@@ -20,6 +20,10 @@ public class Date {
         setMonth(month);
         setYear(year);
     }
+    
+    public String toString() {
+        return day + "." + month + "." + year;
+    }
     public void setDay(int day) {
         if (day < 1 || day > 31) {
             throw new IllegalArgumentException("0 < day < 32");

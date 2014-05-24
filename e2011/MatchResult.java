@@ -1,11 +1,14 @@
 package e2011;
 
+import java.util.ArrayList;
 
 public abstract class MatchResult {
     
     private String homeTeam, awayTeam;
     private int    homeGoals, awayGoals;
+    private ArrayList<Listener> listener;
     public MatchResult(String homeTeam, String awayTeam) {
+        listener = new ArrayList<Listener>();
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
     }
@@ -27,6 +30,29 @@ public abstract class MatchResult {
     public void setResult(int homeGoals, int awayGoals) {
         this.homeGoals = homeGoals;
         this.awayGoals = awayGoals;
+    }
+    
+    /**
+     * 
+     * @param homeGoals
+     * @param awayGoals
+     *            edit result: set in new goals for each team
+     * 
+     */
+    public void editResult(int homeGoals, int awayGoals) {
+        this.homeGoals = homeGoals;
+        this.awayGoals = awayGoals;
+        boardcast();
+    }
+    
+    public void addListener(Listener listener) {
+        this.listener.add(listener);
+    }
+    
+    public void boardcast() {
+        for (Listener listener : this.listener) {
+            listener.changed(this);
+        }
     }
     public boolean isDraw() {
         if (homeGoals == awayGoals) {
@@ -52,5 +78,11 @@ public abstract class MatchResult {
             return participant == homeTeam ? homeGoals : awayGoals;
         }
         return 0;
+    }
+    
+    public String toString() {
+        return "Home team: " + homeTeam + ", Goals: " + homeGoals + "\n"
+                + "Away team: " + awayTeam + ", Goals: " + awayGoals + "\n"
+                + "Winner is: " + winnerIs();
     }
 }

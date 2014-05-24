@@ -3,10 +3,10 @@ package e2011;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LeagueTable {
+public class LeagueTable implements Listener {
     
-    private List<MatchResult> matchtable;
-    private List<String>      teamtable;
+    private List<MatchResult>    matchtable;
+    private List<String>         teamtable;
     private List<LeagueTableRow> pointtable;
     
     /**
@@ -20,16 +20,24 @@ public class LeagueTable {
         for (String s : teamName) {
             teamtable.add(s);
         }
+        initPointTable();
     }
     
     public List<MatchResult> getMatchtable() {
         return matchtable;
     }
+    
+    public List<String> getTeamtable() {
+        return teamtable;
+    }
+
     public void addMatch(String homeTeam, String awayTeam) {
         if (!teamtable.contains(homeTeam) || !teamtable.contains(awayTeam)) {
             throw new IllegalArgumentException("Illegal teams!");
         }
-        matchtable.add(new TennisResult(homeTeam, awayTeam));
+        MatchResult tr = new TennisResult(homeTeam, awayTeam);
+        tr.addListener(this);
+        matchtable.add(tr);
     }
     
     /**
@@ -42,8 +50,7 @@ public class LeagueTable {
      *         have a match, no result added
      */
     public boolean addMatchResult(String homeTeam, String awayTeam,
-            int homeGoals,
-            int awayGoals) {
+            int homeGoals, int awayGoals) {
         for (MatchResult mr : matchtable) {
             if (mr.getHomeTeam() == homeTeam && mr.getAwayTeam() == awayTeam) {
                 mr.setResult(homeGoals, awayGoals);
@@ -86,5 +93,29 @@ public class LeagueTable {
         for (String s : teamtable) {
             pointtable.add(new FootballLeagueTable(this, s));
         }
+    }
+    
+    @Override
+    public void changed(MatchResult matchResult) {
+        System.out.println(matchResult.toString());
+    }
+    
+    public String toString() {
+        String s = "Team List: ";
+        for (String team : teamtable) {
+            s += team + "; ";
+        }
+        s += "\n";
+        s += "Home team | AwayTeam " + "\n";
+        for (MatchResult mr : matchtable) {
+            s += "    " + mr.getHomeTeam() + " vs " + mr.getAwayTeam() + "\n";
+        }
+        s += "Team point:" + "\n";
+        for (LeagueTableRow tp : this.pointtable) {
+            s += "    Team: " + tp.getTeamName() + "; Points:" + tp.getPoints()
+                    + "; Draws: " + tp.getDraws() + "; Victories: "
+                    + tp.getVictories() + "\n";
+        }
+        return s;
     }
 }

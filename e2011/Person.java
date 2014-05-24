@@ -19,6 +19,11 @@ public class Person {
         generatePnr();
     }
     
+    public String toString() {
+        return "birth: " + birth.toString() + " Gender: " + getGender()
+                + " Pnr: " + getPnr();
+    }
+
     public String getGender() {
         return gender;
     }
@@ -27,12 +32,16 @@ public class Person {
         return birth;
     }
     
-    private void generatePnr() {
+    public String getPnr() {
+        return personnumber;
+    }
+
+    public void generatePnr() {
         personnumber = "";
         //DDMMYY
         int day = getBirth().getDay();
-        int month=getBirth().getMonth();
-        int year=getBirth().getYear();
+        int month = getBirth().getMonth();
+        int year = getBirth().getYear();
         if (day < 10) {
             personnumber += "0";
         }
@@ -44,7 +53,7 @@ public class Person {
         if (year < 10) {
             personnumber += "0";
         }
-        personnumber += month;
+        personnumber += year;
         //NNN
         personnumber += ((int) (Math.random() * 10));//N1
         personnumber += ((int) (Math.random() * 10));//N2
@@ -56,19 +65,20 @@ public class Person {
         //KK
         personnumber += generateK1();
         personnumber += generateK2();
+
         generatetabelpnr();
     }
     
     private void generatetabelpnr() {
-        tabelpnr = new int[personnumber.length()];
+        tabelpnr = new int[getPnr().length()];
         for (int i = 0; i < personnumber.length(); i++) {
             tabelpnr[i] = Integer.parseInt(personnumber.charAt(i) + "");
         }
     }
     
-    private int generateK1(){
+    private int generateK1() {
         generatetabelpnr();
-        int vs =0;
+        int vs = 0;
         vs += tabelpnr[0] * 3;
         vs += tabelpnr[1] * 7;
         vs += tabelpnr[2] * 6;
@@ -78,7 +88,7 @@ public class Person {
         vs += tabelpnr[6] * 4;
         vs += tabelpnr[7] * 5;
         vs += tabelpnr[8] * 2;
-        return 11-(vs%11);
+        return 11 - (vs % 11);
     }
     
     private int generateK2() {
@@ -103,10 +113,11 @@ public class Person {
      * throws og den kallende metoden må enten håndtere unntaket med try/catch
      * eller deklarere det med throws.
      **/
-    public void setDateOfBirth(Date dateOfBirth) throws Exception { 
+    public void setDateOfBirth(Date dateOfBirth) throws Exception {
         if (personnumber != null) {
             throw new Exception(
                     "Cannot change date of birth after PID has been set");
         }
-        this.birth = dateOfBirth; }
+        this.birth = dateOfBirth;
+    }
 }

@@ -31,15 +31,61 @@ Checked exception:
 >En checked exception er en subklasse av Exception som ikke samtidig er en subklasse av RuntimeException. En slik Exception må deklareres vha. throws og den kallende metoden må enten håndtere unntaket med try/catch eller deklarere det med throws.
 
 ```
-    public void setDateOfBirth(Date dateOfBirth) throws Exception { 
-        if (personnumber != null) {
-            throw new Exception(
-                    "Cannot change date of birth after PID has been set");
+public void setDateOfBirth(Date dateOfBirth) throws Exception { 
+    if (personnumber != null) {
+        throw new Exception(
+                "Cannot change date of birth after PID has been set");
+    }
+    this.birth = dateOfBirth; 
+}
+```
+
+Method 1: Use try, catch to deal with "throws Exception":
+```
+        public void testExceptions1() {
+            Person ole = new Person("Male");
+                try {
+                    ole.setDateOfBirth(new Date(1, 3, 1));
+                } catch (Exception e) {
+                    System.out.println(e);
+                    e.printStackTrace();
+                }
         }
-        this.birth = dateOfBirth; 
+```
+Method 2: Use "throws Exception" to throw it again, and let others to deal with it.
+```
+        public void testExceptions2() throws Exception {
+            Person kari = new Person("female");
+            kari.setDateOfBirth(new Date(1, 1, 1));
+        }
+        //finally there is two methods again to do the last work:
+            // method 1
+                public static void main(String[] args) throws Exception {
+                    test.testExceptions2();
+                }
+            
+            // method 2    
+                public static void main(String[] args) {
+                    try {
+                        test.testExceptions2();
+                    } catch (Exception e) {
+                        System.out.println(e);
+                        e.printStackTrace();
+                    }
+                }
 ```
 
 ####Java Exception Hierarchy:
 ![Java Exception Hierarchy](exceptionhierarchy.jpg "Java Exception Hierarchy")
 
+
+---
+Sources:
+
+ - Oracle: [Exceptions][1]
+ - Cay S. Horstmann 2014: *Big Java: Early Objects*, 5th Edition
+ - NTNU: [TDT4100][2]
+
+
   [1]: http://docs.oracle.com/javase/tutorial/essential/exceptions/index.html
+  [2]: https://www.ntnu.no/wiki/display/tdt4100/Faginnhold
