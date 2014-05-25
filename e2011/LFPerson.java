@@ -1,9 +1,5 @@
 package e2011;
 
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.PrintWriter;
-import java.util.Scanner;
 
 /**
  * 
@@ -173,22 +169,5 @@ public class LFPerson {
         }
         this.dateOfBirth = dateOfBirth;
     }
-    
-    public static void main(String[] args) {
-        //Scanner in = null;
-        String filename = "file";
-        PrintWriter out = null;
-        try {
-            //in = new Scanner(new File("input.txt"));
-            out = new PrintWriter(filename);
-            out.println("hello");
-        } catch (FileNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } finally {
-            out.close();
-        }
-        //String input = in.next();
-        //System.out.println(input);
-    }
+
 }
