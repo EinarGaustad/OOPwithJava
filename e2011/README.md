@@ -57,15 +57,23 @@ The Three Kinds of Exceptions:
 -
 
 1. checked exception
-> 1. Checked exceptions indicate that something has gone wrong for some ernal reason beyond your control. 
-> 2. A checked exception describes a problem that can occur, no matter how careful you are.
-> 3. (In Figure 2, the checked exceptions are shaded in a darker color.)
-
+> Checked exceptions indicate that something has gone wrong for some
+> internal reason beyond your control. 
+> 
+> A checked exception describes a problem that can occur, no matter how
+> careful you are.
+> 
+> (In Figure 2, the checked exceptions are shaded in a darker color.)
+> 
 > Checked exceptions are subject to the Catch or Specify Requirement.
-> All exceptions are checked exceptions, except for those indicated by Error, RuntimeException, and their subclasses.
-
-> -  The unchecked exceptions, on the other hand, are your fault. 
-The compiler does not check whether you handle an unchecked exception, such as an IndexOutOfBoundsException. After all, you should check your index values rather than install a handler for that exception.
+> 
+> All exceptions are checked exceptions, except for those indicated by
+> Error, RuntimeException, and their subclasses.
+> 
+> The unchecked exceptions, on the other hand, are your fault. 
+> The compiler does not check whether you handle an unchecked exception,
+> such as an IndexOutOfBoundsException. 
+> After all, you should check your index values rather than install a handler for that exception.
 
 2. error
 >Errors are not subject to the Catch or Specify Requirement.
