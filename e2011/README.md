@@ -2,9 +2,11 @@ Java Exception
 =
 The term exception is shorthand for "exceptional event". (Oracle)
 "There are two aspects to dealing with program errors:  **detection** and **handling**". 
+
 "In Java, **exception Handling** provides a flexible mechanism for passing control from the point of error detection to a handler that can deal with the error." (Cay . S. H)
 
 ---
+
 ####Throwing Exceptions
 
 When throw an exception, execution does not continue with the next statement but with an exception handler: 
@@ -21,15 +23,49 @@ When throw an exception, execution does not continue with the next statement but
 
 ![Java Exception Hierarchy](figure2.png "Java Exception Hierarchy")
 
+####Catching Exceptions
+
+Every exception should be handled somewhere in your program. If an exception has no handler, an error message is printed, and your program terminates. 
+
+The try block contains one or more statements that may cause an exception of the kind that you are willing to handle. Each catch clause contains the handler for an exception type. 
+
+```
+        try{
+            // Scanner constructor can throw a FileNotFoundException.
+            Scanner in = new Scanner(new File("input.txt"));
+            String input = in.next();
+            process(input);
+            } 
+            // FileNotFoundException is a special case of an IOException.
+            catch (IOException exception){
+                System.out.println("Could not open input file");
+            } 
+            // Additional catch clauses, 
+            //  can also place more specific exceptions before more general ones.
+            catch (Exception except) {
+                System.out.println(except.getMessage());
+            }
+            // Always executed, even if an exeption occurs.
+            finally{
+                ...
+            }
+```
+
 ---
 
 The Three Kinds of Exceptions:
 -
 
 1. checked exception
+> 1. Checked exceptions indicate that something has gone wrong for some ernal reason beyond your control. 
+> 2. A checked exception describes a problem that can occur, no matter how careful you are.
+> 3. (In Figure 2, the checked exceptions are shaded in a darker color.)
+
 > Checked exceptions are subject to the Catch or Specify Requirement.
-> All exceptions are checked exceptions, except for those indicated by
-> Error, RuntimeException, and their subclasses.
+> All exceptions are checked exceptions, except for those indicated by Error, RuntimeException, and their subclasses.
+
+> -  The unchecked exceptions, on the other hand, are your fault. 
+The compiler does not check whether you handle an unchecked exception, such as an IndexOutOfBoundsException. After all, you should check your index values rather than install a handler for that exception.
 
 2. error
 >Errors are not subject to the Catch or Specify Requirement.
