@@ -3,7 +3,7 @@ TDT4100
 
 ObjektOrientert Programmering med Java
 -------
-####[TDT4100][4] is a Object oriented programming course in [NTNU][4]
+####[TDT4100][4] is an Object oriented programming course in [NTNU][4]
 
 Course Information: [TDT4100][1]
 
