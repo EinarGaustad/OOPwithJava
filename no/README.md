@@ -2,6 +2,9 @@ Java Collection
 =
 Java collections overview
 -
+
+![Interfaces and Classes in the Java Collections Framework](collectionoverview.png "Java Collections Overview")
+
 En collection er et objekt som representerer en gruppe objekter. Dette brukes mye i programmeringssammenheng, og for å forenkle representasjonen og manipulering av slike objekter har Java-plattformen et eget rammeverk med nyttige strukturer og optimaliserte algoritmer. Foruten å sette en standard, sparer også collection-rammeverket deg for en stor mengde implementasjon som ville tatt masse tid å programmere hver gang du trengte det.
 
 Basen til rammeverket er fjorten grensesnitt som representerer ulike typer collections som sets, lists og maps.

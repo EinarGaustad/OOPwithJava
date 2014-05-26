@@ -1,6 +1,7 @@
 Java Exception
 =
 The term exception is shorthand for "exceptional event". (Oracle)
+
 "There are two aspects to dealing with program errors:  **detection** and **handling**". 
 
 "In Java, **exception Handling** provides a flexible mechanism for passing control from the point of error detection to a handler that can deal with the error." (Cay . S. H)
@@ -69,11 +70,15 @@ The Three Kinds of Exceptions:
 > 
 > All exceptions are checked exceptions, except for those indicated by
 > Error, RuntimeException, and their subclasses.
-> 
+ 
+
 > The unchecked exceptions, on the other hand, are your fault. 
 > The compiler does not check whether you handle an unchecked exception,
 > such as an IndexOutOfBoundsException. 
 > After all, you should check your index values rather than install a handler for that exception.
+>
+>
+> Errors and runtime exceptions are collectively known as unchecked exceptions.
 
 2. error
 >Errors are not subject to the Catch or Specify Requirement.
@@ -83,7 +88,6 @@ The Three Kinds of Exceptions:
 > Runtime exceptions are not subject to the Catch or Specify Requirement.
 > Runtime exceptions are those indicated by RuntimeException and its subclasses.
 
-> Errors and runtime exceptions are collectively known as unchecked exceptions.
 
 > Checked exceptions must be explicitly caught or propagated as described in Basic try-catch-finally Exception Handling.
 Unchecked exceptions do not have this requirement. They don't have to be caught or declared thrown.
