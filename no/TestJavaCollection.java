@@ -35,6 +35,12 @@ public class TestJavaCollection {
         while (iter.hasNext()) {
             System.out.println(iter.next() + " : " + iter.toString());
         }
+        System.out.println();
+
+        String[] simpleTable = { "Per", "Morten", "Johan" };
+        System.out.println("Simple table: " + simpleTable[0] + ", "
+                + simpleTable[1] + ", " + simpleTable[2]);
+        System.out.println();
         
         LinkedList<String>employee = new LinkedList<String>();
         System.out.println(employee.toString());

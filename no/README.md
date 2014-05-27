@@ -42,3 +42,12 @@ UML collection implementation:
 
 
 ![collection detail](http://junjunguo.github.io/image/java/collection_implementation.jpg)
+
+
+---
+Sources:
+
+ - Cay S. Horstmann 2014: *Big Java: Early Objects*, 5th Edition
+ - NTNU: [TDT4100][1]
+
+  [1]: https://www.ntnu.no/wiki/display/tdt4100/Faginnhold
