@@ -2,7 +2,7 @@ Java Exception
 =
 The term exception is shorthand for "exceptional event". (Oracle)
 
-"There are two aspects to dealing with program errors:  **detection** and **handling**". 
+"There are two aspects to dealing with program errors:  **detection** and **handling**".
 
 "In Java, **exception Handling** provides a flexible mechanism for passing control from the point of error detection to a handler that can deal with the error." (Cay . S. H)
 
@@ -10,7 +10,7 @@ The term exception is shorthand for "exceptional event". (Oracle)
 
 ####Throwing Exceptions
 
-When throw an exception, execution does not continue with the next statement but with an exception handler: 
+When throw an exception, execution does not continue with the next statement but with an exception handler:
 ```
     public void setPID(String pid) {
         if (!validatePID(pid)) {
@@ -26,9 +26,9 @@ When throw an exception, execution does not continue with the next statement but
 
 ####Catching Exceptions
 
-Every exception should be handled somewhere in your program. If an exception has no handler, an error message is printed, and your program terminates. 
+Every exception should be handled somewhere in your program. If an exception has no handler, an error message is printed, and your program terminates.
 
-The try block contains one or more statements that may cause an exception of the kind that you are willing to handle. Each catch clause contains the handler for an exception type. 
+The try block contains one or more statements that may cause an exception of the kind that you are willing to handle. Each catch clause contains the handler for an exception type.
 
 ```
         try{
@@ -36,12 +36,12 @@ The try block contains one or more statements that may cause an exception of the
             Scanner in = new Scanner(new File("input.txt"));
             String input = in.next();
             process(input);
-            } 
+            }
             // FileNotFoundException is a special case of an IOException.
             catch (IOException exception){
                 System.out.println("Could not open input file");
-            } 
-            // Additional catch clauses, 
+            }
+            // Additional catch clauses,
             //  can also place more specific exceptions before more general ones.
             catch (Exception except) {
                 System.out.println(except.getMessage());
@@ -58,27 +58,20 @@ The Three Kinds of Exceptions:
 -
 
 1. checked exception
-> Checked exceptions indicate that something has gone wrong for some
-> internal reason beyond your control. 
-> 
-> A checked exception describes a problem that can occur, no matter how
-> careful you are.
-> 
+> Checked exceptions indicate that something has gone wrong for some internal reason beyond your control.
+> A checked exception describes a problem that can occur, no matter how careful you are.
 > (In Figure 2, the checked exceptions are shaded in a darker color.)
-> 
 > Checked exceptions are subject to the Catch or Specify Requirement.
-> 
-> All exceptions are checked exceptions, except for those indicated by
-> Error, RuntimeException, and their subclasses.
- 
+> All exceptions are checked exceptions, except for those indicated by Error, RuntimeException, and their subclasses.
 
-> The unchecked exceptions, on the other hand, are your fault. 
+
+- unchecked exceptions:
+> The unchecked exceptions, on the other hand, are your fault.
 > The compiler does not check whether you handle an unchecked exception,
-> such as an IndexOutOfBoundsException. 
+> such as an IndexOutOfBoundsException.
 > After all, you should check your index values rather than install a handler for that exception.
->
->
 > Errors and runtime exceptions are collectively known as unchecked exceptions.
+
 
 2. error
 >Errors are not subject to the Catch or Specify Requirement.

@@ -18,6 +18,15 @@ public class Dice {
         setNumberSum();
     }
     
+    public Dice() {
+        this.totalDice = 5;
+        dice = new int[totalDice];
+        numberSum = new int[6];
+        for (int i = 0; i < totalDice; i++) {
+            dice[i] = randomDice();
+        }
+        setNumberSum();
+    }
     private void setNumberSum() {
         //initial numberSum
         for (int j = 0; j < 6; j++) {
@@ -49,6 +58,13 @@ public class Dice {
         return (String) s.substring(0, totalDice * 2 - 1);
     }
     
+    public int getSum() {
+        int sum = 0;
+        for (int face : dice) {
+            sum += face;
+        }
+        return sum;
+    }
     private int randomDice() {
         return (int) (Math.random() * 6) + 1;
     }
@@ -66,7 +82,7 @@ public class Dice {
         if (value < 1 || value > 6) {
             throw new IllegalArgumentException("invalid value!");
         }
-        return numberSum[value];
+        return numberSum[value - 1];
     }
     
     /**
@@ -167,6 +183,29 @@ public class Dice {
         }
     }
     
+    public int getTwoPairPoints() {
+        int tpp = 0, tp = 0;
+        for (int i = 0; i < numberSum.length; i++) {
+            if (numberSum[i] >= 2) {
+                tpp += (i + 1) * 2;
+                tp++;
+            }
+        }
+        return tp == 2 ? tpp : 0;
+    }
+    
+    public int getHousePoints() {
+        int hp3 = 0, hp2 = 0;
+        for (int i = 0; i < numberSum.length; i++) {
+            if (numberSum[i] == 3) {
+                hp3 = i + 1;
+            } else if (numberSum[i] == 2) {
+                hp2 = i + 1;
+            }
+        }
+        return (hp2 != 0 && hp3 != 0) ? hp3 * 3 + hp2 * 2 : 0;
+    }
+    
     private boolean isContained(int[] values) {
         int[] origin = new int[dice.length];
         for (int i = 0; i < dice.length; i++) {
@@ -199,3 +238,23 @@ public class Dice {
  * spill til spill.
  */
 
+//Deltakere               
+//Enere               
+//Toere               
+//Treere              
+//Firere              
+//Femmere             
+//Seksere             
+//Sum 
+
+//Bonus               
+//Ett par             
+//To par              
+//Tre like                
+//Fire like               
+//Liten straight              
+//Stor straight               
+//Hus             
+//Sjanse              
+//Yatzy               
+//Totalt              
