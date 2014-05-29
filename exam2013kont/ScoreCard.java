@@ -1,5 +1,7 @@
 package exam2013kont;
 
+import java.util.ArrayList;
+
 /**
  * Klassen ScoreCard skal holde orden på alle poengene til én spiller, altså
  * informasjon tilsvarende tabellen vist i figuren i introduksjonen. En
@@ -19,13 +21,15 @@ package exam2013kont;
  *         knyttet til en bestemt kombinasjon. Velg selv passende parametre og
  *         returtype.
  */
-public class ScoreCard {
+public class ScoreCard implements PointRule {
     
-    private Integer[] scores;
+    protected Integer[]                  scores;
+    protected ArrayList<ScoreCardListener> listeners;
     
     //private Score         combination;
     public ScoreCard() {
         this.scores = new Integer[Score.values().length];
+        this.listeners = new ArrayList<ScoreCardListener>();
     }
     
     /**
@@ -49,6 +53,7 @@ public class ScoreCard {
      *         beregne hvor mange poeng en får for å registrere terningene
      *         (Dice-instans) på en bestemt terningkombinasjon
      */
+    @Override
     public int getScore(Dice dice, Score score) {
         switch (score) {
             case ONEPAIR:
@@ -86,8 +91,37 @@ public class ScoreCard {
     public void setScore(Dice dice, Score score) {
         int points = getScore(dice, score);
         scores[score.ordinal()] = points;
+        scoreCardChanged();
     }
     
+    /**
+     * 
+     * @param listener
+     *            add listener to listeners list
+     */
+    public void addListener(ScoreCardListener listener) {
+        listeners.add(listener);
+    }
+    
+    /**
+     * 
+     * @param listener
+     *            remove listener form listeners list
+     */
+    public void removeListener(ScoreCardListener listener){
+        if(listeners.contains(listener)){
+            listeners.remove(listener);
+        }
+    }
+    /**
+     * boardcast ScoreCard changed to all listeners on listeners list
+     */
+    protected void scoreCardChanged() {
+        for (ScoreCardListener listener : listeners) {
+            listener.scoreCardChanged(this);
+        }
+    }
+
     public String toString() {
         String s = "";
         for (int i = 0; i < scores.length; i++) {

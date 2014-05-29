@@ -47,5 +47,31 @@ public class testDice {
             }
             System.out.println("cnext: " + i);
         }
+        /**
+         * The purpose of a test program is to verify that one or more methods
+         * have been implemented correctly.
+         * 
+         * a) Med kun get- og roll-metodene som er spesifisert i Dice-klassen i
+         * oppgave 1, er det vanskelig å gjennomføre testing av klassen,
+         * hvorfor? Hvordan vil du utvide/endre på koden for å gjøre det mulig
+         * å teste disse metodene?
+         * 
+         * roll metode returer ikke verdier
+         * kan skrive toString metode for å vise rusultat
+         * 
+         * problemet er at det ikke er mulig å sette terningverdiene direkte,
+         * siden de bare settes indirekte til uforutsigbare verdier i roll
+         * metodene, en kan derfor ikke veksle mellom å sette tilstanden og
+         * teste hvilke svar get metodene gir. en løsning er å lage en egen
+         * setDice metode og en annen er å gjøre det mulig å sette objektet med
+         * set metode eller i konstruktøren som genererer tilfeldige tall, slik
+         * at vi kan gi inn en som genererer forutsigvare verdier.
+         * 
+         * b) Forklar med tekst og evt. kode hvordan du vil teste getScore- og
+         * setScore-metoden i ScoreCard –klassen slik de er spesifisert i
+         * oppgave 2 b). Det viktigste er å få frem den generelle teknikken
+         * for testing, ikke å bruke et spesifikk rammeverk som JUnit.
+         */
+
     }
 }
