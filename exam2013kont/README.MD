@@ -13,7 +13,11 @@ public enum Currency {
         private Currency(int value) {
                 this.value = value;
         }
-}; 
+        
+        public int getValue() {
+            return value;
+        }
+} 
 ```
 
 Enumeration Types
