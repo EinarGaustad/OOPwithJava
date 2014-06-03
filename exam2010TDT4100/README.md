@@ -1,5 +1,35 @@
-Date
+Map
 =
+
+A map keeps associations between key and value objects.
+(a map is a function from one set, the key set, to another set, the value set. Every key in the map has a unique value, but a value may be associated with several keys.
+
+HashMap: keys are in random order; more efficient in general.
+``` 
+public class RadioAlphabet {
+    
+    private Map<String, String> alphabet = new HashMap<String, String>();
+    
+        alphabet.put("a", "alfa");
+        alphabet.put("b", "bravo");
+        alphabet.put("c", "charlie");
+        alphabet.put("d", "delta");
+        alphabet.put("e", "echo");
+        alphabet.put("f", "foxtrot");
+
+    public String toString() {
+        String s = "";
+        Set<String> keySet = alphabet.keySet();
+        for (String key : keySet) {
+            s += key + ": " + alphabet.get(key) + "\n";
+        }
+        return s;
+    }
+}
+```
+TreeMap: keys are sorted order.
+
+---
 
 Enum 
 -
