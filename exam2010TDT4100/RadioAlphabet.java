@@ -1,5 +1,6 @@
 package exam2010TDT4100;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -12,9 +13,11 @@ import java.util.Set;
  */
 public class RadioAlphabet {
     
+    private ArrayList<RadioAlphabetListener> ralisteners;
     protected Map<String, String> alphabet = new HashMap<String, String>();
     
     public RadioAlphabet(String string, String sign) {
+        ralisteners = new ArrayList<RadioAlphabetListener>();
         String[] table = string.split(sign);
 
         for (String s : table) {
@@ -28,7 +31,8 @@ public class RadioAlphabet {
     }
     
     public RadioAlphabet() {
-        
+        ralisteners = new ArrayList<RadioAlphabetListener>();
+
     }
     public boolean onlyAlphabets(String s) {
         for (int i = 0; i < s.length(); i++) {
@@ -49,6 +53,7 @@ public class RadioAlphabet {
     
     public String convert(char c) {
         if (converts(c)) {
+            radioAlphabetChanged(this, c);
             return alphabet.get(c + "");
         }
         return null;
@@ -114,6 +119,7 @@ public class RadioAlphabet {
     
     public void removeWord(char c) {
         alphabet.remove(c + "");
+        radioAlphabetChanged(this, c);
     }
     
     public String toString() {
@@ -123,5 +129,15 @@ public class RadioAlphabet {
             s += key + ": " + alphabet.get(key) + "\n";
         }
         return s;
+    }
+    
+    public void addListeners(RadioAlphabetListener ralistener) {
+        ralisteners.add(ralistener);
+    }
+    
+    public void radioAlphabetChanged(RadioAlphabet ra, char c) {
+        for (RadioAlphabetListener ralistener : ralisteners) {
+            ralistener.radioAlphabetChanged(ra, c);
+        }
     }
 }
