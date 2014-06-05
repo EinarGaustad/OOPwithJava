@@ -2,7 +2,6 @@ package exam2010TDT4100;
 
 
 import junit.framework.TestCase;
-import exam2010TDT4100.RadioAlphabet;
 
 public class TestingJUnit extends TestCase {
     
@@ -11,7 +10,9 @@ public class TestingJUnit extends TestCase {
     @Override
     protected void setUp() throws Exception {
         super.setUp();
-        radioAlphabet = new RadioAlphabet("alfa-bravo-delta-charlie", "-");
+        radioAlphabet = new RadioAlphabet("alfa-hotel-zulu", "-");
+        radioAlphabet.setWord("hotel alfa lima lima victor alfa romeo delta",
+                " ");
     }
     
     public void testConvertChar() {
@@ -26,9 +27,13 @@ public class TestingJUnit extends TestCase {
                 radioAlphabet.convert("hallvard"));
         assertEquals("hotel alfa lima alfa lima",
                 radioAlphabet.convert("!h!a!l!a!l?"));
-        radioAlphabet.setWord("åring");
+        radioAlphabet.setWord("åring");
+        System.out.println(radioAlphabet.toString());
+        System.out.println(radioAlphabet.converts('å'));
+        System.out.println(radioAlphabet.convert('å'));
+        System.out.println(radioAlphabet.convert("håvard"));
         assertEquals("hotel victor alfa romeo delta",
-                radioAlphabet.convert("håvard"));
+                radioAlphabet.convert("håvard"));
     }
     
     public void testSetWord() {

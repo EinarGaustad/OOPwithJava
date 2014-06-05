@@ -12,7 +12,7 @@ import java.util.Set;
  */
 public class RadioAlphabet {
     
-    private Map<String, String> alphabet = new HashMap<String, String>();
+    protected Map<String, String> alphabet = new HashMap<String, String>();
     
     public RadioAlphabet(String string, String sign) {
         String[] table = string.split(sign);
@@ -27,6 +27,9 @@ public class RadioAlphabet {
         }
     }
     
+    public RadioAlphabet() {
+        
+    }
     public boolean onlyAlphabets(String s) {
         for (int i = 0; i < s.length(); i++) {
             if (s.toLowerCase().charAt(i) < 'a'
@@ -59,7 +62,7 @@ public class RadioAlphabet {
                 s += convert(string.charAt(i)) + " ";
             }
         }
-        return s;
+        return s.substring(0, s.length() - 1);
     }
 
     /**
@@ -87,7 +90,26 @@ public class RadioAlphabet {
      * 
      */
     public void setWord(String string) {
-        alphabet.put(string.substring(0, 1), string);
+        if (onlyAlphabets(string)) {
+            alphabet.put(string.substring(0, 1), string);
+        }
+    }
+    
+    public void setWord(String string, String sign) {
+        String[] table = string.split(sign);
+        
+        for (String s : table) {
+            if (!onlyAlphabets(s)) {
+                throw new IllegalArgumentException(
+                        "only Alphabets are accepted! no signs!");
+            } else {
+                alphabet.put(s.substring(0, 1), s);
+            }
+        }
+    }
+    
+    public void setSign(String key, String value) {
+        alphabet.put(key, value);
     }
     
     public void removeWord(char c) {

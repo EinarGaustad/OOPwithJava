@@ -1,3 +1,52 @@
+JUnit 
+=
+
+####[JUnit](junit.org) Unit Test Framework
+![JUnit](JUnit.png)
+
+
+```
+import org.junit.Assert;
+import org.junit.Test;
+public class MorseJUnitTest {
+    private MorseAlphabet ma = new MorseAlphabet();
+    
+    @Test
+    public void testConvertString() {
+        Assert.assertEquals("... --- ...", ma.convert("sos"));
+        Assert.assertEquals("- . ... -", ma.convert("test"));
+    }
+}
+```
+
+extends TestCase:
+
+```
+import junit.framework.TestCase;
+public class TestingJUnit extends TestCase {
+    
+    private RadioAlphabet radioAlphabet;
+    
+    @Override
+    protected void setUp() throws Exception {
+        super.setUp();
+        radioAlphabet = new RadioAlphabet("alfa-hotel-zulu", "-");
+        radioAlphabet.setWord("hotel alfa lima lima victor alfa romeo delta",
+                " ");
+    }
+    
+    public void testConvertChar() {
+        assertEquals("alfa", radioAlphabet.convert('a'));
+        assertEquals("hotel", radioAlphabet.convert('h'));
+        assertEquals("zulu", radioAlphabet.convert('z'));
+        assertNull(radioAlphabet.convert('!'));
+    }
+...
+
+```
+
+----
+
 Map
 =
 
