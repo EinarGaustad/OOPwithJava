@@ -1,3 +1,15 @@
+Class, Object, Instance
+=
+A **Class** is a blueprint or prototype from which objects are created.
+
+An **Object** is a software bundle of related state and behavior.
+
+An **Instance** is a single and unique unit of a class, representing an Object. When a new instance of a class is created, the JVM will alocate a room of memory for that class instance. 
+
+> we have a blueprint (class) represents student (object) with field (name, age ... ) course (class member), students Ole and Kari would be 2 different instances of the class that represent object(student people).
+
+
+
 JUnit 
 =
 

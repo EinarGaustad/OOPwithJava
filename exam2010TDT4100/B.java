@@ -9,4 +9,8 @@ public class B extends A implements G {
         return a.toString() + " -methodG from class B: ";
     }
     
+    public String toString() {
+        return "this is B & B extends A implements G";
+    }
+    
 }
