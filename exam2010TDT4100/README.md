@@ -8,7 +8,7 @@ An **Instance** is a single and unique unit of a class, representing an Object. 
 
 > we have a blueprint (class) represents student (object) with field (name, age ... ) course (class member), students Ole and Kari would be 2 different instances of the class that represent object(student people).
 
-
+----
 
 JUnit 
 =
