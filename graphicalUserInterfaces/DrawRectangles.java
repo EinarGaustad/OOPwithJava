@@ -58,5 +58,6 @@ public class DrawRectangles extends JComponent {
             g2.fill(box);
             x += (width + 2);
         }
+
     }
 }
