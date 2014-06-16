@@ -23,7 +23,8 @@ public class Drawing {
         
         MoveableRectangle c1 = new MoveableRectangle(table);
         frame.add(c1);
-        
+        c1.moveComponent();
+        frame.repaint();
         frame.setVisible(true);
     }
 }

@@ -6,7 +6,7 @@ import java.awt.Rectangle;
 
 public class TheRectangle {
     
-    private int x, y;
+    private int        x, y, height;
     private Graphics2D graphysics2D;
     private Rectangle  box;
     private Color      color;
@@ -14,15 +14,17 @@ public class TheRectangle {
     /**
      * @param x
      * @param y
+     * @param height
      * @param graphysics2d
      * @param box
      * @param color
      */
-    public TheRectangle(int x, int y, Graphics2D graphysics2d, Rectangle box,
-            Color color) {
+    public TheRectangle(int x, int y, int height, Graphics2D graphysics2d,
+            Rectangle box, Color color) {
         super();
         this.x = x;
         this.y = y;
+        this.height = height;
         graphysics2D = graphysics2d;
         this.box = box;
         this.color = color;
@@ -44,6 +46,14 @@ public class TheRectangle {
         this.y = y;
     }
     
+    public int getHeight() {
+        return height;
+    }
+    
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
     public Graphics2D getGraphysics2D() {
         return graphysics2D;
     }

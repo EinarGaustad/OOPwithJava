@@ -10,7 +10,7 @@ import java.util.Map;
 
 import javax.swing.JComponent;
 
-public class MoveableRectangle extends JComponent {
+public class MovingTestComponent extends JComponent {
     
     private static final long          serialVersionUID = 1L;
     private int[]                      table;
@@ -19,8 +19,8 @@ public class MoveableRectangle extends JComponent {
     private final int                  START_X          = 2, START_Y = 10;
     private ArrayList<TheRectangle>    gtable           = new ArrayList<TheRectangle>();
     private Map<Integer, TheRectangle> gmap             = new HashMap<Integer, TheRectangle>();
-    
-    public MoveableRectangle(int[] table) {
+
+    public MovingTestComponent(int[] table) {
         this.table = table;
         int max = 0;
         int min = 99999;
@@ -34,9 +34,8 @@ public class MoveableRectangle extends JComponent {
         }
         this.CalculateHighUnit = (400 - 10 - 10) / max;
         this.width = ((600 - 5 - 5) / table.length) - 2;
-        System.out.println(CalculateHighUnit);
     }
-
+    
     public void paintComponent(Graphics g) {
         int x = START_X;
         int y = START_Y;
@@ -45,7 +44,7 @@ public class MoveableRectangle extends JComponent {
             int high = table[i] * CalculateHighUnit;
             Graphics2D g2 = (Graphics2D) g;
             //g2.draw(box);
-
+            
             //--------COLOR:
             int colorS = high * 100 + 255;
             colorx = colorS / (255 * 255);
@@ -59,9 +58,8 @@ public class MoveableRectangle extends JComponent {
             }
             colorz = colorS % 255;
             Color newColor = new Color(colorx, colory, colorz);
-            System.out.println(colorx + " " + colory + " " + colorz);
             //---------COLOR END;
-
+            
             Rectangle box = new Rectangle(x, 390 - high, width, high);
             g2.setColor(newColor);
             g2.fill(box);
@@ -74,9 +72,10 @@ public class MoveableRectangle extends JComponent {
     }
     
     public void moveComponent() {
+        System.out.println("moveComponent called");
         int from = 2;
         int to = 7;
-
+        
         gtable.get(from)
                 .getGraphysics2D()
                 .clearRect(gtable.get(from).getX() + 2,
