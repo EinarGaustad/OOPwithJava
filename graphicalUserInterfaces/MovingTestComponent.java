@@ -39,6 +39,7 @@ public class MovingTestComponent extends JComponent {
     public void paintComponent(Graphics g) {
         int x = START_X;
         int y = START_Y;
+        super.paintComponent(g);
         for (int i = 0; i < table.length; i++) {
             int colorz = 0, colory = 0, colorx = 0;
             int high = table[i] * CalculateHighUnit;

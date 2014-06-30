@@ -48,37 +48,38 @@ public class Gunman extends JComponent {
         g.fillRect(rectX, rectY, width, height);
     }
     
-    public int getRectX() {
-        return rectX;
-    }
-    
-    public void setRectX(int rectX) {
-        this.rectX = rectX;
-    }
-    
-    public int getRectY() {
-        return rectY;
-    }
-    
-    public void setRectY(int rectY) {
-        this.rectY = rectY;
-    }
-    
+    //    public int getRectX() {
+    //        return rectX;
+    //    }
+    //    
+    //    public void setRectX(int rectX) {
+    //        this.rectX = rectX;
+    //    }
+    //    
+    //    public int getRectY() {
+    //        return rectY;
+    //    }
+    //    
+    //    public void setRectY(int rectY) {
+    //        this.rectY = rectY;
+    //    }
+
     private static void createAndShowGui() {
-        System.out.println("create and show gui called");
+        //        System.out.println("create and show gui called");
         Gunman mainPanel = new Gunman();
-        System.out.println("created main panel (self)");
+        //        System.out.println("created main panel (self)");
         JFrame frame = new JFrame("Gunman");
-        System.out.println("creaded new JFrame");
+        //        System.out.println("creaded new JFrame");
+        //        frame.setSize(PREF_H, PREF_W);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.getContentPane().add(mainPanel);
-        System.out.println("geted frame.get content pane().add(mainPanel)");
+        //        System.out.println("geted frame.get content pane().add(mainPanel)");
         frame.pack();
-        System.out.println("pack() done");
+        //        System.out.println("pack() done");
         frame.setLocationByPlatform(true);
-        System.out.println("set location by platform done");
+        //        System.out.println("set location by platform done");
         frame.setVisible(true);
-        System.out.println();
+        //        System.out.println();
     }
 
     public static void main(String[] args) {

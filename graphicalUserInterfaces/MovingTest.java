@@ -20,15 +20,15 @@ public class MovingTest {
             
             @Override
             public void actionPerformed(ActionEvent actEvt) {
-                boolean stop = false;
-                if (!stop) {
-                    mtc.moveComponent();
-                    mtc.revalidate();
-                    mtc.repaint();
-                } else {
-                    ((Timer) actEvt.getSource()).stop();
-                    System.out.println("timer act stop..");
-                }
+                //boolean stop = false;
+                //if (!stop) {
+                mtc.moveComponent();
+                //                    mtc.revalidate();
+                //                    mtc.repaint();
+                //                } else {
+                //                    ((Timer) actEvt.getSource()).stop();
+                //                    System.out.println("timer act stop..");
+                //                }
             }
         }).start();
     }
