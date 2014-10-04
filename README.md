@@ -1,4 +1,4 @@
-TDT4100
+Object-oriented programming (OOP)
 =======
 
 ObjektOrientert Programmering med Java
