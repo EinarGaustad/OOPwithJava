@@ -28,6 +28,6 @@ public class Chicken extends Bird {
 
     @Override
     public String display() {
-        return "not implemented";
+        return "not implemented :)";
     }
 }

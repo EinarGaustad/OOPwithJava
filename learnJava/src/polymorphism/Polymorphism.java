@@ -40,6 +40,25 @@ public class Polymorphism {
 
         food = new Rooster(shape, color, size);
         print(food);
+
+        Tomato tomato = new Tomato(shape, color, size, 10);
+        print(tomato);
+        try {
+            tomato.add(10);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        print(tomato);
+        tomato.consume(19);
+        print(tomato);
+        try {
+            tomato.add(200);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        //        tomato.add(-1); //Will not execute future when the exception is thrown
+        print(tomato);
+
     }
 
     /**
