@@ -10,9 +10,9 @@ package polymorphism;
  */
 public class Fruit extends Food {
 
-    protected String shape;
-    protected String color;
-    protected String size;
+    private String shape;
+    private String color;
+    private String size;
 
     public Fruit(String shape, String color, String size) {
         this.shape = shape;
@@ -22,5 +22,17 @@ public class Fruit extends Food {
 
     public String display() {
         return "polymorphism.Fruit: " + "shape: " + shape + "; color: " + color + "; size: " + size;
+    }
+
+    public String getShape() {
+        return shape;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public String getSize() {
+        return size;
     }
 }

@@ -13,6 +13,6 @@ public class Apple extends Fruit {
     }
 
     public String display() {
-        return "polymorphism.Apple: " + "shape: " + shape + "; color: " + color + "; size: " + size;
+        return "polymorphism.Apple: " + "shape: " + getShape() + "; color: " + getColor() + "; size: " + getSize();
     }
 }

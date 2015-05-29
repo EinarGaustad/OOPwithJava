@@ -1,5 +1,11 @@
 package polymorphism;
 
+import org.junit.Assert;
+
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.util.Scanner;
+
 /**
  * This file is part of learnJava
  * <p/>
@@ -16,7 +22,7 @@ package polymorphism;
  * <p/>
  * Created by GuoJunjun <junjunguo.com> on April 29, 2015.
  */
-public class Polymorphism {
+class Polymorphism {
 
     public static void main(String[] args) {
         String shape = "round";
@@ -52,14 +58,70 @@ public class Polymorphism {
         tomato.consume(19);
         print(tomato);
         try {
-            tomato.add(200);
+            //            tomato.add(200);
         } catch (Exception e) {
             e.printStackTrace();
         }
         //        tomato.add(-1); //Will not execute future when the exception is thrown
         print(tomato);
 
+        // tomato handling:
+        System.out.println("add-consume");
+        InputStream input = System.in;
+        //        tomatoHandling(input, tomato);
+        // -----
+        InputStream readInput;
+        try {
+            PrintWriter writer = new PrintWriter("x.txt");
+            writer.println("6-0");
+            writer.println("10-9");
+            writer.println("20-19");
+            writer.println("0-2");
+            writer.close();
+            System.out.println("print writer: ");
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        try {
+            //            readInput = new FileInputStream("x.txt");
+            readInput = new FileInputStream(new File("x.txt"));
+            System.out.println("read input:");
+            tomatoHandling(readInput, tomato);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        try {
+
+            InputStream is =  new ByteArrayInputStream("200-2".getBytes(StandardCharsets.UTF_8));
+            Assert.assertEquals( 2, 4);
+            Assert.assertEquals( 2, 2);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
+
+    public static void tomatoHandling(InputStream input, Tomato tomato) {
+        Scanner scanner = new Scanner(input);
+        while (scanner.hasNextLine()) {
+            String line = scanner.nextLine();
+            int dashPos = line.indexOf('-');
+            try {
+                int add = Integer.parseInt(line.substring(0, dashPos));
+                int consume = Integer.parseInt(line.substring(dashPos + 1));
+                if (add != 0 && consume != 0) {
+                    tomato.add(add);
+                    print(tomato);
+                    tomato.consume(consume);
+                    print(tomato);
+                }
+            } catch (Exception e) {
+                System.out.println("nothing is done! an error input occurred");
+            }
+        }
+        scanner.close();
+    }
+
 
     /**
      * dynamic method lookup:

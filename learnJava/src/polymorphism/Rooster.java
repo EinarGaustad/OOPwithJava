@@ -1,5 +1,8 @@
 package polymorphism;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * This file is part of learnJava
  * <p/>
@@ -20,7 +23,13 @@ public final class Rooster extends Chicken {
 
     @Override
     public String display() {
+
         return getKind() + " - shape: " + shape + "; color: " + color + "; size: " + size +
                (egg ? " can" : " cannot ") + "produce egg.";
+    }
+
+    public void test(){
+        List list = new ArrayList();
+        list.contains(new Object());
     }
 }
